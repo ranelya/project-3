@@ -8,21 +8,21 @@ const Register = () => {
 
    
 
-  const handleRegister = async (email, password) => {
-    const auth = getAuth();
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        console.log(user);
-        dispatch(
-          setUser({
-            email: user.email,
-            token: user.accessToken,
-            id: user.uid,
-          })
-        );
-      })
-      .catch(console.error);
-  };
+    const handleRegister = async (email, password) => {
+      const auth = getAuth();
+      await createUserWithEmailAndPassword(auth, email, password)
+        .then(({ user }) => {
+          console.log(user);
+          dispatch(
+            setUser({
+              email: user.email,
+              token: user.accessToken,
+              id: user.uid,
+            })
+          );
+        })
+        .catch(console.error);
+    };
 //   console.log(ars);
   return <ModslRegister handleRegister={handleRegister} />;
 };
