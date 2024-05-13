@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { redirect } from "react-router-dom";
-import Cookies from "universal-cookie";
+import { createSlice } from '@reduxjs/toolkit';
+import { redirect } from 'react-router-dom';
+import Cookies from 'universal-cookie';
 
 const initialState = {
   email: null,
@@ -11,22 +11,22 @@ const initialState = {
 let cookie = new Cookies();
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setUser(state, action) {
       state.email = action.payload.email;
       state.token = action.payload.token;
       state.id = action.payload.id;
-      cookie.set("auth-token", action.payload.token);
-      redirect("/");
+      cookie.set('auth-token', action.payload.token);
+      redirect('/');
     },
     removeUser(state) {
       state.email = null;
       state.token = null;
       state.id = null;
-      cookie.remove("auth-token", { path: "/" });
-      
+      cookie.remove('auth-token', { path: '/' });
+      console.log(qwe);
     },
   },
 });
