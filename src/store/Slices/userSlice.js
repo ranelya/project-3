@@ -26,8 +26,6 @@ const userSlice = createSlice({
       state.token = null;
       state.id = null;
       cookie.remove('auth-token', { path: '/' });
-      console.log(qwe);
-      console.log(qwe);
     },
   },
 });
