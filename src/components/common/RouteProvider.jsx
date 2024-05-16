@@ -17,6 +17,7 @@ import BuyCard from "../pages/BuyCard";
 import AdminBev from "../pages/AdminBev";
 import AdminComb from "../pages/AdminComb";
 import Home from "../pages/Home";
+import NotFoundPage from "../pages/NotFoundPage";
   
 
 const RouteProvider = () => {
@@ -40,6 +41,7 @@ const RouteProvider = () => {
       <Route path="/buycard" element={<BuyCard />} />
       <Route path="/adminbev" element={<AdminBev />} />
       <Route path="/admincombo" element={<AdminComb />} />
+      <Route path="*" element={<NotFoundPage/>}/>
     </Routes>
   );
 };

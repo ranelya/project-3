@@ -17,6 +17,7 @@ import {
 import { db } from "./components/FireBase-config";
 import MainPage from "./components/pages/MainPage";
 import { useSelector } from "react-redux";
+import NotFoundPage from "./components/pages/NotFoundPage";
 
 const App = () => {
   const [user, setUser] = useState(null);
