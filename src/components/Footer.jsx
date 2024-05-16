@@ -123,7 +123,7 @@ const Footer = () => {
             fontSize="15px"
             color="rgb(153, 153, 153)"
           >
-            © 2023
+            © 2024
           </Text>
           <Link color="rgb(153, 153, 153)" textDecoration="none" href="">
             Правовая информация

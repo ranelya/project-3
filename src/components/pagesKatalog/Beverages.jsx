@@ -155,7 +155,7 @@ const Beverages = () => {
                     {user_prof.email ? (
                       <Text fontSize="20px" fontWeight="300">
                         от {selectedBeverage.priceUser} сом потому что вы
-                        зареганы
+                        зарегестрированы
                       </Text>
                     ) : (
                       <Text fontSize="20px" fontWeight="300">

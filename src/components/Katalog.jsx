@@ -82,10 +82,23 @@ const Katalog = () => {
 
   return (
     <Box>
-      <Flex pl="50px" pr="50px" justifyContent="space-between">
-        <Flex gap="10px" fontSize="14px">
-          <NavLink to="/combo">Дессерты</NavLink>
-          <NavLink to="/beverages">Напитки</NavLink>
+      <Flex pl="50px" pr="50px" justifyContent="space-between" textAlign="center"  >
+        <Flex gap="30px" padding="25px" >
+          <NavLink  to="/combo"
+           style={{backgroundColor:'orange' , 
+          border:'1px solid orange',
+           height:'35px', 
+           width:'100px', 
+           borderRadius:'50px',
+           fontSize:'15px', 
+           fontWeight:'600'}}>Дессерты</NavLink>
+          <NavLink to="/beverages"
+          style={{border:'1px solid orange',
+          height:'35px', 
+          width:'100px', 
+          borderRadius:'50px',
+          fontSize:'15px', 
+          fontWeight:'600'}}>Напитки</NavLink>
         </Flex>
         {sizes.map((size) => (
           <Button

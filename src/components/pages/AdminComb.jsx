@@ -180,7 +180,7 @@ const AdminComb = () => {
                 w="800px"
                 type="text"
                 name="image"
-                placeholder="картинка"
+                placeholder="Картинка"
                 value={formData.image}
                 onChange={handleInputChange}
               />

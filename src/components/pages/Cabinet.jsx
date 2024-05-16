@@ -1,55 +1,23 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  Heading,
-  Image,
-  Input,
-  SimpleGrid,
-  Text,
-} from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useAuth } from "../hooks/Auth";
-import { removeUser } from "../../store/Slices/userSlice";
-import Header from "../Header";
-import axios from "axios";
-import Cookies from "universal-cookie";
-import { Link } from "react-router-dom";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  query,
-} from "firebase/firestore";
-import { db } from "../FireBase-config";
+import { Box, Button, Flex, Grid, Heading, Image, Input, SimpleGrid, Text } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuth } from '../hooks/Auth';
+import { removeUser } from '../../store/Slices/userSlice';
+import Header from '../Header';
+import axios from 'axios';
+import Cookies from 'universal-cookie';
+import { Link } from 'react-router-dom';
+import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore';
+import { db } from '../FireBase-config';
 
 const Cabinet = () => {
   const user_prof = useSelector((state) => state.user);
   const [favPizza, setFavPizza] = useState([]);
 
   const dispatch = useDispatch();
-  const postData = () => {
-    // try {
-    //    axios({
-    //     method: "POST",
-    //     url: "https://pizza-and-desserts.p.rapidapi.com/pizzas/1",
-    //     data: {
-    //       "X-RapidAPI-Key":
-    //         "e8da783e25msh8388c8b995fc613p12ae7ajsn799538dfcf2a",
-    //       "X-RapidAPI-Host": "pizza-and-desserts.p.rapidapi.com",
-    //     },
-    //   });
-    // } catch (error) {
-    //   console.error(error);
-    // }
-  };
-  // const user_prof = useSelector((state) => state.user);
 
   useEffect(() => {
-    const q = query(collection(db, "ShopColletion"));
+    const q = query(collection(db, 'ShopColletion'));
     const unsub = onSnapshot(q, (querySnapshot) => {
       let pizzaArr = [];
 
@@ -61,18 +29,18 @@ const Cabinet = () => {
     });
     return () => unsub();
   }, []);
-  const sizes = ["xl"];
+  const sizes = ['xl'];
   console.log(favPizza);
   let cookie = new Cookies();
-  const [user, setUser] = useState(cookie.get("auth-token"));
-  const { isAuth, email } = useAuth();
+  const [user, setUser] = useState(cookie.get('auth-token'));
+  const { token } = useAuth();
   return (
     <Box>
-      {user_prof.email ? (
+      {user_prof.token ? (
         <Box pb="50px" pl="50px">
           <Link to={`/`}>
             <Button m="auto" onClick={() => dispatch(removeUser())}>
-              выйти
+              Выйти
             </Button>
           </Link>
         </Box>
@@ -96,8 +64,7 @@ const Cabinet = () => {
                     justifyContent="space-between"
                     pt="20px"
                     pl="35px"
-                    fontSize="20px"
-                  >
+                    fontSize="20px">
                     {user_prof.email ? (
                       <Text fontSize="20px" fontWeight="300">
                         от {pizza.priceUser} сом

@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import MainPage from "../pages/MainPage";
-import DodoCoins from "../pages/DodoCoins";
 import Cabinet from "../pages/Cabinet";
 import AboutUs from "../pages/AboutUs";
 import Contacts from "../pages/Contacts";
@@ -17,13 +16,14 @@ import Buy from "../pages/Buy";
 import BuyCard from "../pages/BuyCard";
 import AdminBev from "../pages/AdminBev";
 import AdminComb from "../pages/AdminComb";
+import Home from "../pages/Home";
   
 
 const RouteProvider = () => {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
-      <Route path="/dodocoins" element={<DodoCoins />} />
+      <Route path="/" element={<Home/>}/>
       <Route path="/cabinet" element={<Cabinet />} />
       <Route path="/aboutus" element={<AboutUs />} />
       <Route path="/contacts" element={<Contacts />} />

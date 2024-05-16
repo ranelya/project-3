@@ -1,14 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { redirect } from 'react-router-dom';
-import Cookies from 'universal-cookie';
 
 const initialState = {
   email: null,
-  token: null,
+  token: localStorage.getItem('auth_token') || null,
   id: null,
 };
-
-let cookie = new Cookies();
 
 const userSlice = createSlice({
   name: 'user',
@@ -18,14 +15,14 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       state.token = action.payload.token;
       state.id = action.payload.id;
-      cookie.set('auth-token', action.payload.token);
+      localStorage.setItem('auth_token', action.payload.token);
       redirect('/');
     },
     removeUser(state) {
       state.email = null;
       state.token = null;
       state.id = null;
-      cookie.remove('auth-token', { path: '/' });
+      localStorage.removeItem('auth_token');
     },
   },
 });

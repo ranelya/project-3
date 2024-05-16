@@ -31,8 +31,7 @@ import { useDispatch } from "react-redux";
 import Cookies from "universal-cookie";
 
 const Header = ({ user }) => {
-  // const { user } = props;
-  const { isAuth, email } = useAuth();
+  const { isAuth, email, token } = useAuth();
   useEffect(() => {
     console.log(user, "my user");
   }, [email, user]);
@@ -53,32 +52,7 @@ const Header = ({ user }) => {
           justifyContent="space-between"
           pr="50px"
         >
-          <Flex gap="15px">
-            <Link to="/aboutus">О нас</Link>
-            {/* <Link to="/contacts">Контакты</Link> */}
-            {user.email ? <Link to="/admin">Админ Панель</Link> : null}
-          </Flex>
-          <Button
-            aria-label="Toggle Color Mode"
-            onClick={toggleColorMode}
-            _focus={{ boxShadow: "none" }}
-            w="fit-content"
-          >
-            {colorMode === "light" ? <BsMoonStarsFill /> : <BsSun />}
-          </Button>
-        </Flex>
-      </Box>
-      <Box pl="50px">
-        <Box flex flexDirection="row" justifyContent="space-between">
-          <Flex
-            gap="20px"
-            alignItems="center"
-            fontSize="26px"
-            fontWeight="600"
-            justifyContent="space-between"
-            margin="0 auto"
-          >
-            <Flex gap="20px" display={{ base: "none", md: "flex" }}>
+             <Flex gap="20px" display={{ base: "none", md: "flex" }}>
               <Link to="/">
                 <Image w="70px" src="/assets/logo.png" alt="logo" />
               </Link>
@@ -104,7 +78,45 @@ const Header = ({ user }) => {
                 </Text>
               </Flex>
             </Flex>
-
+          <Flex gap="30px">
+          <Link to='/' style={{fontWeight:600, fontSize:'16px'}}>Главная</Link>
+            <Link  to="/aboutus" style={{fontWeight:600, fontSize:'16px'}}>О нас</Link>
+            {token ? <Link to="/admin" style={{fontWeight:600, fontSize:'16px'}}>Админ Панель</Link> : null}
+            <Box>
+                    {token ? (
+                      <NavLink to="/cabinet">
+                        <Text as="span" fontWeight="600" fontSize="16px">
+                          Кабинет
+                        </Text>
+                      </NavLink>
+                    ) : (
+                      <Flex gap="20px">
+                        <Login />
+                        <Register />
+                      </Flex>
+                    )}
+                  </Box>
+          </Flex>
+          <Button
+            aria-label="Toggle Color Mode"
+            onClick={toggleColorMode}
+            _focus={{ boxShadow: "none" }}
+            w="fit-content"
+          >
+            {colorMode === "light" ? <BsMoonStarsFill /> : <BsSun />}
+          </Button>
+        </Flex>
+      </Box>
+      <Box pl="50px">
+        <Box flex flexDirection="row" justifyContent="space-between">
+          <Flex
+            gap="20px"
+            alignItems="center"
+            fontSize="26px"
+            fontWeight="600"
+            justifyContent="space-between"
+            margin="0 auto"
+          >
             <Box
               flex
               flexDirection="row"
@@ -126,8 +138,8 @@ const Header = ({ user }) => {
                       </Text>
                     </NavLink> */}
                   </Box>
-                  <Box>
-                    {user.email ? (
+                  {/* <Box>
+                    {token ? (
                       <NavLink to="/cabinet">
                         <Text as="span" fontWeight="400" fontSize="16px">
                           Кабинет
@@ -139,7 +151,7 @@ const Header = ({ user }) => {
                         <Register />
                       </Flex>
                     )}
-                  </Box>
+                  </Box> */}
                 </Flex>
               </Flex>
             </Box>

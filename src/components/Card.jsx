@@ -40,15 +40,15 @@ import { db } from "./FireBase-config";
 const Card = ({ pizza, handleDelete, handleComplete, handleUpdate }) => {
   let arr = [
     {
-      title: "маленькая",
+      title: "Маленькая",
       size: 150,
     },
     {
-      title: "средний",
+      title: "Средний",
       size: 200,
     },
     {
-      title: "большой",
+      title: "Большой",
       size: 250,
     },
   ];
@@ -80,7 +80,7 @@ const Card = ({ pizza, handleDelete, handleComplete, handleUpdate }) => {
   };
   const toast = useToast();
   return (
-    <Box p="12px">
+    <Box p="12px" >
       <Grid templateColumns="repeat(4, 1fr)">
         <Flex flexDirection="column" gap="10px">
           <Box width="380px" alignItems="center" w="300px">
@@ -171,7 +171,7 @@ const Card = ({ pizza, handleDelete, handleComplete, handleUpdate }) => {
                         onClose();
                         toast({
                           title: "",
-                          description: "вы успешно добавили в корзину",
+                          description: "Вы успешно добавили в корзину",
                           status: "success",
                           duration: 4000,
                           isClosable: true,
