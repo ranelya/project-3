@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Flex, Grid, SimpleGrid, Text } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { Box,  SimpleGrid, Text } from "@chakra-ui/react";
 import Card from "../Card";
 import OftenOrdered from "../OftenOrdered";
 import { db } from "../FireBase-config";

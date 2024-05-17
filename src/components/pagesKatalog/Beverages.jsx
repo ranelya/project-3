@@ -1,7 +1,6 @@
 import { addDoc, collection, onSnapshot, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { db } from "../FireBase-config";
-import Pizza from "./Pizza";
 import {
   Box,
   Button,
@@ -16,8 +15,6 @@ import {
   ModalHeader,
   ModalOverlay,
   SimpleGrid,
-  StepIndicator,
-  Text,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
@@ -67,9 +64,6 @@ const Beverages = () => {
 
   const user_prof = useSelector((state) => state.user);
 
-  const handleSizePizza = (sizePizza) => {
-    setSizePizza(sizePizza);
-  };
   const handleAddCart = async (obj) => {
     // e.preventDefault();
     await addDoc(collection(db, "ogogoPzFav"), obj);
@@ -135,15 +129,6 @@ const Beverages = () => {
               <ModalHeader>{selectedBeverage.title}</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                {/* {arr.map((item, index) => (
-                  <Button
-                    bg="orange"
-                    key={index}
-                    onClick={() => handleSizePizza(item.size)}
-                  >
-                    {item.title}
-                  </Button>
-                ))} */}
                 <Flex
                   gap="10px"
                   alignItems="center"

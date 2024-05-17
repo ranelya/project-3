@@ -2,15 +2,8 @@ import {
   Image,
   Box,
   Button,
-  ButtonGroup,
-  CardBody,
-  CardFooter,
-  Divider,
-  Heading,
-  Stack,
   Text,
   Flex,
-  Center,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -20,20 +13,13 @@ import {
   ModalBody,
   ModalFooter,
   Grid,
-  Input,
   useToast,
 } from "@chakra-ui/react";
 import {
-  QuerySnapshot,
   addDoc,
   collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  query,
-  updateDoc,
 } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { db } from "./FireBase-config";
 

@@ -1,34 +1,19 @@
 import {
   Box,
   Button,
-  Center,
   Flex,
-  FormControl,
-  FormLabel,
-  Heading,
   Image,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Text,
   useColorMode,
-  useDisclosure,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { Form, Link, NavLink } from "react-router-dom";
+import React, { useEffect} from "react";
+import { Link, NavLink } from "react-router-dom";
 import { BsSun, BsMoonStarsFill } from "react-icons/bs";
-import ModalRegister from "./ModalRegister";
-import { setUser } from "../store/Slices/userSlice";
 import Register from "./Register";
 import Login from "./Login";
 import { useAuth } from "./hooks/Auth";
 import { useDispatch } from "react-redux";
-import Cookies from "universal-cookie";
+
 
 const Header = ({ user }) => {
   const { isAuth, email, token } = useAuth();
@@ -131,27 +116,6 @@ const Header = ({ user }) => {
                 pr="50px"
               >
                 <Flex gap="20px">
-                  <Box>
-                    {/* <NavLink to="dodocoins">
-                      <Text as="span" fontWeight="400" fontSize="16px">
-                        Огогокоины
-                      </Text>
-                    </NavLink> */}
-                  </Box>
-                  {/* <Box>
-                    {token ? (
-                      <NavLink to="/cabinet">
-                        <Text as="span" fontWeight="400" fontSize="16px">
-                          Кабинет
-                        </Text>
-                      </NavLink>
-                    ) : (
-                      <Flex gap="20px">
-                        <Login />
-                        <Register />
-                      </Flex>
-                    )}
-                  </Box> */}
                 </Flex>
               </Flex>
             </Box>

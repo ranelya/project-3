@@ -3,21 +3,9 @@ import Header from "./components/Header";
 import "./index.css";
 import RouteProvider from "./components/common/RouteProvider";
 import Katalog from "./components/Katalog";
-import Card from "./components/Card";
 import Footer from "./components/Footer";
 import Cookies from "universal-cookie";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  query,
-  updateDoc,
-} from "firebase/firestore";
-import { db } from "./components/FireBase-config";
-import MainPage from "./components/pages/MainPage";
 import { useSelector } from "react-redux";
-import NotFoundPage from "./components/pages/NotFoundPage";
 
 const App = () => {
   const [user, setUser] = useState(null);

@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import ModalLogin from "./ModalLogin";
 import { setUser } from "../store/Slices/userSlice";
 import { useDispatch } from "react-redux";
-import { Button, Wrap, WrapItem, useToast } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react";
 
 const Login = () => {
   const toast = useToast();

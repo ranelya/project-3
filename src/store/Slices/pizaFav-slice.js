@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { redirect } from "react-router-dom";
-import Cookies from "universal-cookie";
+
 
 const initialState = {
     data: []
