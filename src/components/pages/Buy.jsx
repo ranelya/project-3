@@ -14,6 +14,7 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 const Buy = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
