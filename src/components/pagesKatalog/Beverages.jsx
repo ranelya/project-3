@@ -19,6 +19,8 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
+import { Text } from "@chakra-ui/react";
+
 
 const Beverages = () => {
   const [beverages, setBeverages] = useState([]);
