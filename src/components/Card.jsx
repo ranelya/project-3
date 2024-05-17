@@ -54,10 +54,6 @@ const Card = ({ pizza}) => {
   const handleAddCart = async (e) => {
     await addDoc(collection(db, "ogogoPzFav"), pizza);
   };
-  const handleInputChange = (item) => {
-    setCurrentPizza(item);
-    onClose();
-  };
   const sizes = ["xl"];
 
   const handleSizePizza = (sizePizza) => {

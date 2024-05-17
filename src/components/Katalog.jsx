@@ -10,10 +10,8 @@ import {
   Flex,
   useDisclosure,
   Text,
-  useToast,
 } from "@chakra-ui/react";
 import {
-  addDoc,
   collection,
   deleteDoc,
   doc,

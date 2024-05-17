@@ -57,7 +57,7 @@ const AdminBev = () => {
       size: 250,
     },
   ];
-  const [sizePizza, setSizePizza] = useState(arr[0].size);
+  const [sizePizza] = useState(arr[0].size);
 
   const user_prof = useSelector((state) => state.user);
 
