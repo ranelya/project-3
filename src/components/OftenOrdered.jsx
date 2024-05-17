@@ -20,9 +20,6 @@ import { useSelector } from "react-redux";
 
 const OftenOrdered = ({
   pizza,
-  handleDelete,
-  handleComplete,
-  handleUpdate,
 }) => {
   let arr = [
     {
@@ -45,7 +42,6 @@ const OftenOrdered = ({
   };
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [size, setSize] = useState("xl");
-  // const [favPizza, setFavPizza] = useState(null);
   const handleSizeClick = (newSize) => {
     setSize(newSize);
     onOpen();
@@ -137,7 +133,7 @@ const OftenOrdered = ({
                   </Text>
                 )}
                 {!user_prof.email && (
-                  <Text fontSize="20px" fontWeight="300" color="red">
+                  <Text fontSize="20px" fontWeight="300" color="orange">
                     {" "}
                     от {pizza.priceUser} сом для зарегестрированных
                   </Text>

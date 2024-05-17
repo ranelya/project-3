@@ -12,17 +12,14 @@ import { BsSun, BsMoonStarsFill } from "react-icons/bs";
 import Register from "./Register";
 import Login from "./Login";
 import { useAuth } from "./hooks/Auth";
-import { useDispatch } from "react-redux";
 
 
 const Header = ({ user }) => {
-  const { isAuth, email, token } = useAuth();
+  const {  email, token } = useAuth();
   useEffect(() => {
     console.log(user, "my user");
   }, [email, user]);
 
-  const dispatch = useDispatch();
-  console.log(email);
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
@@ -39,7 +36,7 @@ const Header = ({ user }) => {
         >
              <Flex gap="20px" display={{ base: "none", md: "flex" }}>
               <Link to="/">
-                <Image w="70px" src="/assets/logo.png" alt="logo" />
+                <Image w="70px" src="/assets/logo-pizz.png" marginTop="8px" alt="logo" />
               </Link>
               <Flex flexDir="column">
                 <Text as="span" fontWeight="500" fontSize="17px">
@@ -64,7 +61,7 @@ const Header = ({ user }) => {
               </Flex>
             </Flex>
           <Flex gap="30px">
-          <Link to='/' style={{fontWeight:600, fontSize:'16px'}}>Главная</Link>
+          <Link to='/' style={{fontWeight:600, fontSize:'16px'}} >Главная</Link>
             <Link  to="/aboutus" style={{fontWeight:600, fontSize:'16px'}}>О нас</Link>
             {token ? <Link to="/admin" style={{fontWeight:600, fontSize:'16px'}}>Админ Панель</Link> : null}
             <Box>

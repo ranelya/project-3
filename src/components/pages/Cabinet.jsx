@@ -3,8 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from '../hooks/Auth';
 import { removeUser } from '../../store/Slices/userSlice';
-import Header from '../Header';
-import axios from 'axios';
 import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore';
@@ -29,11 +27,8 @@ const Cabinet = () => {
     });
     return () => unsub();
   }, []);
-  const sizes = ['xl'];
   console.log(favPizza);
   let cookie = new Cookies();
-  const [user, setUser] = useState(cookie.get('auth-token'));
-  const { token } = useAuth();
   return (
     <Box>
       {user_prof.token ? (
@@ -74,16 +69,6 @@ const Cabinet = () => {
                         от {pizza.price} сом
                       </Text>
                     )}
-                    {/* {sizes.map((size) => (
-                      <Button
-                        bg="orange"
-                        // onClick={() => handleSizeClick(size, pizza)}
-                        key={size}
-                        m={4}
-                      >
-                        Выбрать
-                      </Button>
-                    ))} */}
                   </Flex>
                 </Box>
               </Flex>

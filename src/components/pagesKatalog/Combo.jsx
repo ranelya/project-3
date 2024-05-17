@@ -42,7 +42,7 @@ const Combo = () => {
       size: 250,
     },
   ];
-  const [sizePizza, setSizePizza] = useState(arr[0].size);
+  const [sizePizza] = useState(arr[0].size);
   useEffect(() => {
     const q = query(collection(db, "combo"));
     const unsub = onSnapshot(q, (querySnapshot) => {
@@ -56,7 +56,6 @@ const Combo = () => {
     return () => unsub;
   }, []);
   const handleAddCart = async (obj) => {
-    // e.preventDefault();
     await addDoc(collection(db, "ogogoPzFav"), obj);
   };
   const handleSizeClick = (newSize, beverage) => {
@@ -128,15 +127,6 @@ const Combo = () => {
               <ModalHeader>{selectedBeverage.title}</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                {/* {arr.map((item, index) => (
-              <Button
-                bg="orange"
-                key={index}
-                onClick={() => handleSizePizza(item.size)}
-              >
-                {item.title}
-              </Button>
-            ))} */}
                 <Flex
                   gap="10px"
                   alignItems="center"

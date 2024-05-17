@@ -99,10 +99,11 @@ const Footer = () => {
                 fontWeight="300"
                 fontSize="15px"
                 color="rgb(153, 153, 153)"
+                marginBottom="15px"
               >
                 Принимаем к оплате
               </Text>
-              <Image w="300px" src="/assets/Oshka.png" alt="oshka" />
+              <Image w="170px" src="/assets/Oshka.png" alt="oshka" />
             </Flex>
           </Flex>
         </Flex>

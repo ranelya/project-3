@@ -115,9 +115,7 @@ const AdminBev = () => {
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "Beverages", id));
   };
-  const handleSizePizza = (sizePizza) => {
-    setSizePizza(sizePizza);
-  };
+ 
   return (
     <Box>
       <Center pl="60px" py="60px" flex flexDirection="column">

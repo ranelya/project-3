@@ -11,11 +11,10 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  useColorMode,
   useDisclosure,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import ModalLogin from "./ModalLogin";
+import React, { useState } from "react";
+
 
 const ModslRegister = ({ handleRegister }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();

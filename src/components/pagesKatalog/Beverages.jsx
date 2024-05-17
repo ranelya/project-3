@@ -40,7 +40,7 @@ const Beverages = () => {
       size: 250,
     },
   ];
-  const [sizePizza, setSizePizza] = useState(arr[0].size);
+  const [sizePizza] = useState(arr[0].size);
   const [selectedBeverage, setSelectedBeverage] = useState(null);
 
   useEffect(() => {
@@ -67,7 +67,6 @@ const Beverages = () => {
   const user_prof = useSelector((state) => state.user);
 
   const handleAddCart = async (obj) => {
-    // e.preventDefault();
     await addDoc(collection(db, "ogogoPzFav"), obj);
   };
   

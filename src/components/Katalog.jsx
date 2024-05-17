@@ -11,7 +11,6 @@ import {
   useDisclosure,
   Text,
   useToast,
-  Link,
 } from "@chakra-ui/react";
 import {
   addDoc,
@@ -30,7 +29,7 @@ const Katalog = () => {
   const [size, setSize] = React.useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [favPizza, setFavPizza] = useState(null);
-  const toast = useToast();
+
 
   const handleClick = (newSize) => {
     setSize(newSize);
@@ -74,9 +73,6 @@ const Katalog = () => {
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "ogogoPzFav", id));
-  };
-  const handleAddCart = async (obj) => {
-    await addDoc(collection(db, "ogogoPzFav"), obj);
   };
   const sizes = ["sm"];
 
@@ -148,7 +144,6 @@ const Katalog = () => {
                   <Button
                     onClick={() => {
                       onClose();
-                      // handleAddCart();
                     }}
                   >
                     Купить

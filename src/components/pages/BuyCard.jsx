@@ -2,16 +2,12 @@ import {
   Box,
   Button,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
   Image,
   Input,
-  Link,
   Text,
   useToast,
 } from "@chakra-ui/react";
-import { CardElement } from "@stripe/react-stripe-js";
 import {
   addDoc,
   collection,
@@ -24,7 +20,6 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { db } from "../FireBase-config";
 import { useSelector } from "react-redux";
-import { wait } from "@testing-library/user-event/dist/utils";
 
 const BuyCard = () => {
   const [favPizza, setFavPizza] = useState([]);
@@ -66,7 +61,6 @@ const BuyCard = () => {
   };
   const toast = useToast();
   const handleAddCart = async (arr) => {
-    // Добавляем объект cartData в коллекцию "ShopColletion"
     await arr.forEach((item) => {
       addDoc(collection(db, "ShopColletion"), item);
     });
@@ -106,14 +100,8 @@ const BuyCard = () => {
             </NavLink>
           </Button>
         </Box>
-        {/* {user_prof.email ? (
-          <Text>Total Price: {calculateTotalPrice2()} сом</Text>
-          ) : (
-            <Text>Total Price: {calculateTotalPrice()} сом</Text>
-          )} */}
         {favPizza.map((pizza) => (
           <>
-            {/* <NavLink to="/"></NavLink> */}
             <Box key={pizza.id}>
               <Flex pb="10px" gap="10px" w="430px" alignItems="center">
                 <Image w="100px" src={pizza.image} alt={pizza.title} />

@@ -23,7 +23,6 @@ const MainPage = () => {
         pizzaArr.push({ ...doc.data(), id: doc.id });
       });
       setPizzas(pizzaArr);
-      // console.log(pizzaArr);
     });
     return () => unsub();
   }, []);
@@ -43,11 +42,11 @@ const MainPage = () => {
   };
 
   return (
-    <Box w="1535">
+    <Box w="1535" >
       <Text pl="30px" fontSize="24px" fontWeight="100">
         Недавно добавленные
       </Text>
-      <SimpleGrid columns={[1, 2, 2, 3, 4]} gap="20px">
+      <SimpleGrid  columns={[1, 2, 2, 3, 4]} gap="10px">
         {pizzas.slice(0, 4).map((pizza) => (
           <OftenOrdered
             key={pizza.id}

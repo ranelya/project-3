@@ -23,7 +23,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { db } from "./FireBase-config";
 
-const Card = ({ pizza, handleDelete, handleComplete, handleUpdate }) => {
+const Card = ({ pizza}) => {
   let arr = [
     {
       title: "Маленькая",
@@ -42,7 +42,7 @@ const Card = ({ pizza, handleDelete, handleComplete, handleUpdate }) => {
   const [size, setSize] = useState("md");
   const [sizePizza, setSizePizza] = useState(arr[0].size);
 
-  const [currentPizza, setCurrentPizza] = useState(null);
+  const [ setCurrentPizza] = useState(null);
 
   const user_prof = useSelector((state) => state.user);
 
@@ -52,7 +52,6 @@ const Card = ({ pizza, handleDelete, handleComplete, handleUpdate }) => {
   };
 
   const handleAddCart = async (e) => {
-    // e.preventDefault();
     await addDoc(collection(db, "ogogoPzFav"), pizza);
   };
   const handleInputChange = (item) => {
@@ -69,9 +68,9 @@ const Card = ({ pizza, handleDelete, handleComplete, handleUpdate }) => {
     <Box p="12px" >
       <Grid templateColumns="repeat(4, 1fr)">
         <Flex flexDirection="column" gap="10px">
-          <Box width="380px" alignItems="center" w="300px">
-            <Image dropShadow="xl" w="200px" src={pizza.image} />
-            <Text pl="35px" fontSize="20px">
+          <Box width="380px" alignItems="center" w="300px" border="1px solid #e2e2e2">
+            <Image dropShadow="xl" maxW="200px" height="200px" src={pizza.image} margin="0 auto"/>
+            <Text pl="35px" fontSize="18px" fontWeight="600">
               {pizza.title}
             </Text>
             <Text pl="35px">{pizza.desc}</Text>
@@ -94,6 +93,8 @@ const Card = ({ pizza, handleDelete, handleComplete, handleUpdate }) => {
 
               {sizes.map((size) => (
                 <Button
+                 display="block"
+                 maxW="750px"
                   bg="orange"
                   onClick={() => handleSizeClick(size)}
                   key={size}
@@ -142,7 +143,7 @@ const Card = ({ pizza, handleDelete, handleComplete, handleUpdate }) => {
                           </Text>
                         )}
                         {!user_prof.email && (
-                          <Text fontSize="20px" fontWeight="300" color="red">
+                          <Text fontSize="20px" fontWeight="300" color="orange">
                             {" "}
                             от {pizza.priceUser} сом для зарегестрированных
                           </Text>
@@ -174,8 +175,6 @@ const Card = ({ pizza, handleDelete, handleComplete, handleUpdate }) => {
         </Flex>
       </Grid>
       <Flex gap="10px">
-        {/* <Button onClick={() => handleDelete(pizza.id)}>Delete</Button> */}
-        {/* <Button>Update</Button> */}
       </Flex>
     </Box>
   );

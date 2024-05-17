@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Card,
   Center,
   Flex,
   Image,
@@ -15,7 +14,6 @@ import {
   ModalOverlay,
   SimpleGrid,
   Text,
-  useDisclosure,
 } from "@chakra-ui/react";
 import {
   addDoc,

@@ -19,7 +19,7 @@ const App = () => {
   // console.log(+"3456");
 
   useEffect(() => {
-    if (cookie.get("auth-token") == undefined) {
+    if (cookie.get("auth-token") === undefined) {
       setUser(null);
     } else {
       setUser(cookie.get("auth-token"));

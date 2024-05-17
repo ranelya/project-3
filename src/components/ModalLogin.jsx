@@ -17,7 +17,6 @@ import React, { useState } from "react";
 
 const ModalLogin = ({ handleLogin }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  //   console.log(handleLogin, "jiro");
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 

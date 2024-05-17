@@ -27,7 +27,6 @@ import {
 } from "firebase/firestore";
 import { db } from "../FireBase-config";
 import { v4 as uuidv4 } from "uuid";
-import { NavLink } from "react-router-dom";
 
 const AdminComb = () => {
   const [formData, setFormData] = useState({
