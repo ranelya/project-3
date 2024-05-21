@@ -197,21 +197,25 @@ const AdminComb = () => {
         {combos.map((pizza) => (
           <Box key={pizza.id}>
             <Flex pt="60px" flexDirection="column" gap="10px">
-              <Box width="380px" alignItems="center" w="300px">
-                <Image dropShadow="xl" w="200px" src={pizza.image} />
-                <Text pl="35px" fontSize="20px">
+              <Box width="400px" alignItems="center" w="300px">
+                <Image dropShadow="xl" w="200px" 
+                margin="0 auto"
+                transition="transform 0.3s"
+               _hover={{ transform: 'scale(1.1)'}} 
+                src={pizza.image} />
+                <Text pl="20px" fontSize="20px" fontWeight="600">
                   {pizza.title}
                 </Text>
-                <Text pl="35px">{pizza.desc}</Text>
+                <Text pl="20px" height="90px" maxHeight="95px">{pizza.desc}</Text>
                 <Flex
                   alignItems="center"
                   justifyContent="space-between"
                   pt="20px"
-                  pl="35px"
+                  pl="20px"
                   fontSize="20px"
                 >
                   <Text>от {pizza.price} сом</Text>
-                  {sizes.map((size) => (
+                  {/* {sizes.map((size) => (
                     <Button
                       bg="orange"
                       onClick={() => handleSizeClick(size, pizza)}
@@ -220,7 +224,7 @@ const AdminComb = () => {
                     >
                       Выбрать
                     </Button>
-                  ))}
+                  ))} */}
                   <Modal onClose={onClose} size={size} isOpen={isOpen}>
                     <ModalOverlay />
                     <ModalContent>
@@ -239,7 +243,7 @@ const AdminComb = () => {
                           />
                           <Box>
                             <Text>{currentPizza?.desc}</Text>
-                            <Text fontSize="20px" fontWeight="300">
+                            <Text fontSize="20px"  fontWeight="300">
                               от {currentPizza?.price} сом
                             </Text>
                           </Box>
@@ -259,7 +263,7 @@ const AdminComb = () => {
                 </Flex>
               </Box>
             </Flex>
-            <Button onClick={() => handleDelete(pizza.id)}>Delete</Button>
+            <Button marginLeft="18px"  onClick={() => handleDelete(pizza.id)}>Удалить</Button>
           </Box>
         ))}
       </SimpleGrid>

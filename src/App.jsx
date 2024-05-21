@@ -6,7 +6,7 @@ import Katalog from "./components/Katalog";
 import Footer from "./components/Footer";
 import Cookies from "universal-cookie";
 import { useSelector } from "react-redux";
-
+import CaptionCarousel from "./components/slider/Slider";
 const App = () => {
   const [user, setUser] = useState(null);
   
@@ -26,6 +26,8 @@ const App = () => {
     }
     console.log(user, "app user");
   }, [user]);
+
+
 
   return (
     <div>

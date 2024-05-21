@@ -192,11 +192,11 @@ function Admin() {
           <Box key={pizza.id}>
             <Flex flexDirection="column" gap="10px">
               <Box width="380px" alignItems="center" w="300px">
-                <Image dropShadow="xl" w="200px" src={pizza.image} />
+                <Image dropShadow="xl" w="200px" margin="0 auto" src={pizza.image} />
                 <Text pl="35px" fontSize="20px">
                   {pizza.title}
                 </Text>
-                <Text pl="35px">{pizza.desc}</Text>
+                <Text pl="35px" height="95px" maxH="90px">{pizza.desc}</Text>
                 <Flex
                   alignItems="center"
                   justifyContent="space-between"
@@ -205,7 +205,7 @@ function Admin() {
                   fontSize="20px"
                 >
                   <Text>от {pizza.price} сом</Text>
-                  {sizes.map((size) => (
+                  {/* {sizes.map((size) => (
                     <Button
                       bg="orange"
                       onClick={() => handleSizeClick(pizza)}
@@ -214,11 +214,11 @@ function Admin() {
                     >
                       Выбрать
                     </Button>
-                  ))}
+                  ))} */}
                 </Flex>
               </Box>
             </Flex>
-            <Button onClick={() => handleDelete(pizza.id)}>Delete</Button>
+            <Button marginLeft="25px" marginBottom="10px" mt="5px" onClick={() => handleDelete(pizza.id)}>Удалить</Button>
           </Box>
         ))}
       </SimpleGrid>

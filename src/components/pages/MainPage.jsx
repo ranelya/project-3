@@ -11,9 +11,11 @@ import {
   query,
   updateDoc,
 } from "firebase/firestore";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 const MainPage = () => {
   const [pizzas, setPizzas] = useState([]);
+  const isWideScreen = useBreakpointValue({ base: false, md: true });
 
   useEffect(() => {
     const q = query(collection(db, "ogogoPizzas"));
@@ -42,37 +44,41 @@ const MainPage = () => {
   };
 
   return (
-    <Box w="1535" >
-      <Text pl="30px" fontSize="24px" fontWeight="100">
-        Недавно добавленные
-      </Text>
-      <SimpleGrid  columns={[1, 2, 2, 3, 4]} gap="10px">
-        {pizzas.slice(0, 4).map((pizza) => (
-          <OftenOrdered
-            key={pizza.id}
-            pizza={pizza}
-            handleDelete={handleDelete}
-            handleComplete={handleComplete}
-            handleUpdate={handleUpdate}
-          />
-        ))}
-      </SimpleGrid>
+    <Box w="100%" maxW="1535px" mx="auto">
+    {isWideScreen && (
+      <>
+        <Text pl={{ base: "20px", md: "30px" }} fontSize={{ base: "20px", md: "24px" }} fontWeight="100">
+          Недавно добавленные
+        </Text>
+        <SimpleGrid columns={[1, 2, 2, 3, 4]} gap="20px" mx={{ base: "20px", md: "30px" }}>
+          {pizzas.slice(0, 4).map((pizza) => (
+            <OftenOrdered
+              key={pizza.id}
+              pizza={pizza}
+              handleDelete={handleDelete}
+              handleComplete={handleComplete}
+              handleUpdate={handleUpdate}
+            />
+          ))}
+        </SimpleGrid>
+      </>
+    )}
 
-      <Text pl="30px" fontSize="30px" fontWeight="200">
-        Pizza
-      </Text>
-      <SimpleGrid columns={[1, 2, 2, 3, 4]} alignItems="center">
-        {pizzas.map((pizza) => (
-          <Card
-            key={pizza.id}
-            pizza={pizza}
-            handleDelete={handleDelete}
-            handleComplete={handleComplete}
-            handleUpdate={handleUpdate}
-          />
-        ))}
-      </SimpleGrid>
-    </Box>
+    <Text pl={{ base: "20px", md: "30px" }} fontSize={{ base: "24px", md: "30px" }} fontWeight="200">
+      Pizza
+    </Text>
+    <SimpleGrid columns={[1, 2, 3, 4]} gap="20px" mx={{ base: "20px", md: "30px" }}>
+      {pizzas.map((pizza) => (
+        <Card
+          key={pizza.id}
+          pizza={pizza}
+          handleDelete={handleDelete}
+          handleComplete={handleComplete}
+          handleUpdate={handleUpdate}
+        />
+      ))}
+    </SimpleGrid>
+  </Box>
   );
 };
 

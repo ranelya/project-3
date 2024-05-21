@@ -83,11 +83,15 @@ const Beverages = () => {
             <Grid templateColumns="repeat(4, 1fr)">
               <Flex flexDirection="column" gap="10px">
                 <Box width="380px" alignItems="center" w="300px">
-                  <Image dropShadow="xl" w="200px" src={pizza.image} />
+                  <Image dropShadow="xl" 
+                  w="200px"  
+                  transition="transform 0.3s"
+                 _hover={{ transform: 'scale(1.1)'}} 
+                  src={pizza.image} />
                   <Text pl="35px" fontSize="20px">
                     {pizza.title}
                   </Text>
-                  <Text pl="35px">{pizza.desc}</Text>
+                  <Text pl="35px" >{pizza.desc}</Text>
                   <Flex
                     alignItems="center"
                     justifyContent="space-between"

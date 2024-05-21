@@ -10,6 +10,7 @@ import {
   Flex,
   useDisclosure,
   Text,
+  Icon
 } from "@chakra-ui/react";
 import {
   collection,
@@ -22,11 +23,32 @@ import React, { useEffect, useState } from "react";
 import { db } from "./FireBase-config";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { MdShoppingCart } from 'react-icons/md';
 
 const Katalog = () => {
   const [size, setSize] = React.useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [favPizza, setFavPizza] = useState(null);
+
+  const linkStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'orange',
+    border: '1px solid orange',
+    height: '35px',
+    width: '100px',
+    borderRadius: '50px',
+    fontSize: '15px',
+    fontWeight: '600',
+    textDecoration: 'none',
+    transition: 'background-color 0.3s, color 0.3s'
+  };
+
+  const hoverStyle = {
+    backgroundColor: 'transparent',
+    color: 'orange'
+  };
 
 
   const handleClick = (newSize) => {
@@ -79,33 +101,54 @@ const Katalog = () => {
       <Flex pl="50px" pr="50px" justifyContent="space-between" textAlign="center"  >
         <Flex gap="30px" padding="25px" >
           <NavLink  to="/combo"
-           style={{backgroundColor:'orange' , 
-          border:'1px solid orange',
-           height:'35px', 
-           width:'100px', 
-           borderRadius:'50px',
-           fontSize:'15px', 
-           fontWeight:'600'}}>Дессерты</NavLink>
+        style={linkStyle}
+        activeStyle={{ ...linkStyle, backgroundColor: 'orange' }}
+        onMouseEnter={(e) => {
+          e.target.style.backgroundColor = hoverStyle.backgroundColor;
+          e.target.style.color = hoverStyle.color;
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.backgroundColor = 'orange';
+          e.target.style.color = 'black';
+        }}>Дессерты
+        </NavLink>
+
           <NavLink to="/beverages"
-          style={{border:'1px solid orange',
-          height:'35px', 
-          width:'100px', 
-          borderRadius:'50px',
-          fontSize:'15px', 
-          fontWeight:'600'}}>Напитки</NavLink>
+        style={{ ...linkStyle, backgroundColor: 'transperent', color: 'orange' }}
+        activeStyle={{ ...linkStyle, backgroundColor: 'orange', color: 'white' }}
+        onMouseEnter={(e) => {
+          e.target.style.backgroundColor = hoverStyle.backgroundColor;
+          e.target.style.color = hoverStyle.color;
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.backgroundColor = 'orange';
+          e.target.style.color = 'black';
+        }}>
+          Напитки
+        </NavLink>
         </Flex>
         {sizes.map((size) => (
-          <Button
-            onClick={() => handleClick(size)}
-            key={size}
-            bg="orange"
-            borderRadius="20px"
-            m={4}
-          >
-            {" "}
-            Корзина
-          </Button>
-        ))}
+        <Button
+          onClick={() => handleClick(size)}
+          key={size}
+          bg="orange"
+          m={4}
+          _hover={{ transform: 'scale(1.1)', transition: 'transform 0.2s' }} // эффект при наведении
+        >
+          <Icon 
+            as={MdShoppingCart} 
+            boxSize={6} 
+          />
+        </Button>
+      ))}
+      <style>
+        {`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}
+      </style>
 
         <Drawer onClose={onClose} isOpen={isOpen} size={size}>
           <DrawerOverlay />
@@ -128,7 +171,7 @@ const Katalog = () => {
                         )}
                       </Box>
                     </Flex>
-                    <Button onClick={() => handleDelete(pizza.id)}>
+                    <Button colorScheme='teal' variant='ghost' onClick={() => handleDelete(pizza.id)}>
                       Delete
                     </Button>
                   </Box>

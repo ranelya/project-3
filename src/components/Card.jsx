@@ -42,7 +42,6 @@ const Card = ({ pizza}) => {
   const [size, setSize] = useState("md");
   const [sizePizza, setSizePizza] = useState(arr[0].size);
 
-  const [ setCurrentPizza] = useState(null);
 
   const user_prof = useSelector((state) => state.user);
 
@@ -61,21 +60,30 @@ const Card = ({ pizza}) => {
   };
   const toast = useToast();
   return (
-    <Box p="12px" >
-      <Grid templateColumns="repeat(4, 1fr)">
-        <Flex flexDirection="column" gap="10px">
-          <Box width="380px" alignItems="center" w="300px" border="1px solid #e2e2e2">
-            <Image dropShadow="xl" maxW="200px" height="200px" src={pizza.image} margin="0 auto"/>
-            <Text pl="35px" fontSize="18px" fontWeight="600">
+    <Box p="20px" alignItems="center">
+      <Grid templateColumns="repeat(4, 1fr)" >
+        <Flex flexFlow="column" display="flex" justifyContent="space-between" >
+          <Box alignItems="center" width="300px" overflow="hidden">
+            <Image 
+            dropShadow="xl"
+            maxW="200px" 
+            height="200px" 
+            src={pizza.image} 
+            margin="0 auto"
+            transition="transform 0.3s"
+           _hover={{ transform: 'scale(1.1)'}}/>
+            <Text pl="35px" fontSize="18px" fontWeight="600"  mt="10px">
               {pizza.title}
             </Text>
-            <Text pl="35px">{pizza.desc}</Text>
+            <Text pl="35px" mt="10px" height="75px"  maxHeight="75px">{pizza.desc}</Text>
             <Flex
               alignItems="center"
               justifyContent="space-between"
               pt="20px"
               pl="35px"
-              fontSize="20px"
+              fontSize="18px"
+              width="100%"
+              mt="auto"
             >
               {user_prof.email ? (
                 <Text fontSize="20px" fontWeight="300">

@@ -1,8 +1,34 @@
 import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
+import CaptionCarousel from "../slider/Slider";
 
 const AboutUs = () => {
+  // const cards = [
+  //   {
+  //     title: 'Итальянская Классика',
+  //     text: 'Попробуйте настоящую итальянскую пиццу с хрустящей корочкой и ароматными начинками.',
+  //    image: '',
+  //   },
+  //   {
+  //     title: 'Свежие Ингредиенты',
+  //     text: 'Мы используем только свежие и качественные ингредиенты для нашей пиццы.',
+  //     image: 'https://ouch-cdn2.icons8.com/hn0pyuiVMt6HAqmUMRyuy5b01RjtyOUMn7CB4i5FQkE/skp:webm/czM6Ly9pY29uczgu/b3VjaC1wcm9kLmFz/c2V0cy92aWRlb3Mv/NDQvOTczOGZmYzMt/ZDY4NS00MTM5LTlh/ZTQtM2I1Y2RjYTg5/MTI3LndlYm0.webm',
+  //   },
+  //   {
+  //     title: 'Для Настоящих Гурманов',
+  //     text: 'Насладитесь эксклюзивными рецептами пиццы, разработанными нашими шеф-поварами.',
+  //     image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60',
+  //   },
+  //   {
+  //     title: 'Быстрая Доставка',
+  //     text: 'Горячая пицца прямо к вашему столу в кратчайшие сроки.',
+  //     image: 'https://img.freepik.com/free-photo/a-front-view-young-female-courier-female-worker-of-food-delivery-service-holding-coffee-cups-food-packages-showing-phone-call-sign-on-white_140725-19992.jpg',
+  //   },
+  // ];
+
   return (
+    <>
+    {/* <CaptionCarousel cards={cards} /> */}
     <Box maxW="1440px">
       <Box pl="60px" w={["300px", "400px", "500px", "100%"]}>
         <Heading fontWeight="300">Мы</Heading>
@@ -111,6 +137,7 @@ const AboutUs = () => {
         </Box>
       </Box>
     </Box>
+    </>
   );
 };
 

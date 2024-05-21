@@ -193,7 +193,7 @@ const AdminBev = () => {
                 <Text pl="35px" fontSize="20px">
                   {pizza.title}
                 </Text>
-                <Text pl="35px">{pizza.desc}</Text>
+                <Text pl="35px" height='100px'>{pizza.desc}</Text>
                 <Flex alignItems="center" pt="20px" pl="35px" fontSize="20px">
                 {user_prof.email ? (
                       <Text fontSize="20px" fontWeight="300">
@@ -204,7 +204,7 @@ const AdminBev = () => {
                         от {pizza.price} сом
                       </Text>
                     )}
-                  {sizes.map((size) => (
+                  {/* {sizes.map((size) => (
                     <Button
                       bg="orange"
                       onClick={() => handleOpenModal(pizza)}
@@ -213,11 +213,11 @@ const AdminBev = () => {
                     >
                       Выбрать
                     </Button>
-                  ))}
+                  ))} */}
                 </Flex>
               </Box>
             </Flex>
-            <Button onClick={() => handleDelete(pizza.id)}>Delete</Button>
+            <Button ml="30px" mb="20px" mt="10px" onClick={() => handleDelete(pizza.id)}>Удалить</Button>
           </Box>
         ))}
       </SimpleGrid>
