@@ -8,7 +8,7 @@ import Cookies from "universal-cookie";
 import { useSelector } from "react-redux";
 
 const App = () => {
-  const [user, setUser] = useState(null);
+  const [ setUser] = useState(null);
   const prof = useSelector((state) => state.user);
   
   useEffect(() => {
