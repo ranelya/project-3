@@ -23,7 +23,7 @@ const App = () => {
     } else {
       setUser(cookie.get("auth-token"));
     }
-    console.log(user, "app user");
+    
   }, [user]);
 
   return (

@@ -72,9 +72,9 @@ const AdminComb = () => {
     return () => unsub();
   }, []);
 
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [size, setSize] = useState("md");
-  const [currentPizza, setCurrentPizza] = useState(null);
+  const { isOpen, onClose } = useDisclosure();
+  const [size ] = useState("md");
+  const [currentPizza] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

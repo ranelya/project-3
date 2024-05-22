@@ -44,7 +44,7 @@ function Admin() {
 
   const [pizzas, setPizzas] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
-  const [currentPizza, setCurrentPizza] = useState(null);
+  const [currentPizza] = useState(null);
 
   useEffect(() => {
     const q = query(collection(db, "ogogoPizzas"));
