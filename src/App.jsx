@@ -6,25 +6,20 @@ import Katalog from "./components/Katalog";
 import Footer from "./components/Footer";
 import Cookies from "universal-cookie";
 import { useSelector } from "react-redux";
+
 const App = () => {
   const [user, setUser] = useState(null);
-  
   const prof = useSelector((state) => state.user);
-  let cookie = new Cookies();
-  cookie.get("auth-token", prof)
-  // cookie.get("auith-token", prof)
-  console.log(prof);
-
-  // console.log(+"3456");
-
+  
   useEffect(() => {
-    if (cookie.get("auth-token") === undefined) {
+    const cookie = new Cookies();
+    const authToken = cookie.get("auth-token");
+    if (authToken === undefined) {
       setUser(null);
     } else {
-      setUser(cookie.get("auth-token"));
+      setUser(authToken);
     }
-    
-  }, [user]);
+  }, []); // Empty dependency array ensures this runs once when the component mounts
 
   return (
     <div>
