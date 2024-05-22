@@ -1,7 +1,5 @@
 import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
-import CaptionCarousel from "../slider/Slider";
-
 const AboutUs = () => {
   // const cards = [
   //   {

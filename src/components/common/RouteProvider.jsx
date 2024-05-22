@@ -36,7 +36,6 @@ const RouteProvider = () => {
       <Route path="/othergoods" element={<OtherGoods />} />
       <Route path="/stock" element={<Stock />} />
       <Route path="/admin" element={<Admin />} />
-      {/* {user && <Route path="" element />} */}
       <Route path="/buy" element={<Buy />} />
       <Route path="/buycard" element={<BuyCard />} />
       <Route path="/adminbev" element={<AdminBev />} />

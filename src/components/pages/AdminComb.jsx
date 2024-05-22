@@ -85,13 +85,7 @@ const AdminComb = () => {
     });
   };
 
-  const handleSizeClick = (newSize, pizza) => {
-    setSize(newSize);
-    setCurrentPizza(pizza);
-    onOpen();
-  };
 
-  const sizes = ["xl"];
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "combo", id));
@@ -215,16 +209,6 @@ const AdminComb = () => {
                   fontSize="20px"
                 >
                   <Text>от {pizza.price} сом</Text>
-                  {/* {sizes.map((size) => (
-                    <Button
-                      bg="orange"
-                      onClick={() => handleSizeClick(size, pizza)}
-                      key={size}
-                      m={4}
-                    >
-                      Выбрать
-                    </Button>
-                  ))} */}
                   <Modal onClose={onClose} size={size} isOpen={isOpen}>
                     <ModalOverlay />
                     <ModalContent>

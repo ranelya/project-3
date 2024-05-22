@@ -75,10 +75,6 @@ const AdminBev = () => {
     return () => unsub();
   }, []);
 
-  const handleOpenModal = (pizza) => {
-    setCurrentPizza(pizza);
-    onOpen();
-  };
 
   const handleCloseModal = () => {
     setCurrentPizza(null);
@@ -108,9 +104,8 @@ const AdminBev = () => {
       id: uuidv4(),
     });
   };
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen,  onClose } = useDisclosure();
 
-  const sizes = ["xl"];
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "Beverages", id));
@@ -204,16 +199,6 @@ const AdminBev = () => {
                         от {pizza.price} сом
                       </Text>
                     )}
-                  {/* {sizes.map((size) => (
-                    <Button
-                      bg="orange"
-                      onClick={() => handleOpenModal(pizza)}
-                      key={size}
-                      m={4}
-                    >
-                      Выбрать
-                    </Button>
-                  ))} */}
                 </Flex>
               </Box>
             </Flex>
@@ -229,19 +214,9 @@ const AdminBev = () => {
               <ModalHeader>{currentPizza.title}</ModalHeader>
               <ModalCloseButton />
               <ModalBody>
-                {/* {arr.map((item, index) => (
-                  <Button
-                    bg="orange"
-                    key={index}
-                    onClick={() => handleSizePizza(item.size)}
-                  >
-                    {item.title}
-                  </Button>
-                ))} */}
                 <Flex
                   gap="5px"
                   alignItems="center"
-                  // justifyContent="space-between"
                 >
                   <Image pt="20px" w={sizePizza} src={currentPizza.image} />
                   <Box>

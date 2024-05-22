@@ -58,10 +58,7 @@ function Admin() {
     return () => unsub();
   }, []);
 
-  const handleSizeClick = (pizza) => {
-    setCurrentPizza(pizza);
-    setIsOpen(true);
-  };
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -71,8 +68,6 @@ function Admin() {
       id: uuidv4(),
     });
   };
-
-  const sizes = ["xl"];
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "ogogoPizzas", id));
@@ -205,16 +200,6 @@ function Admin() {
                   fontSize="20px"
                 >
                   <Text>от {pizza.price} сом</Text>
-                  {/* {sizes.map((size) => (
-                    <Button
-                      bg="orange"
-                      onClick={() => handleSizeClick(pizza)}
-                      key={size}
-                      m={4}
-                    >
-                      Выбрать
-                    </Button>
-                  ))} */}
                 </Flex>
               </Box>
             </Flex>

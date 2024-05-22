@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Flex,
-  Grid,
   Image,
   Modal,
   ModalBody,

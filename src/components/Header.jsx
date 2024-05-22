@@ -1,6 +1,5 @@
-// Импорт компонентов и библиотек
 import React, { useEffect } from "react";
-import "./Header.css"; // Импорт CSS файла
+import "./Header.css";
 import {
   Box,
   Flex,
@@ -24,7 +23,7 @@ import Login from "./Login";
 import Register from "./Register";
 import { useAuth } from "./hooks/Auth";
 
-// Компонент шапки
+
 const Header = () => {
   const { email, token } = useAuth();
   useEffect(() => {
@@ -173,7 +172,7 @@ const Header = () => {
           </Box>
         )}
       </Box>
-      <Box h="80px" /> {/* Отступ от шапки */}
+      <Box h="80px" /> 
     </>
   );
 };
