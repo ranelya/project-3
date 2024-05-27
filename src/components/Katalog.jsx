@@ -24,32 +24,12 @@ import { db } from "./FireBase-config";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { MdShoppingCart } from 'react-icons/md';
+import './Katalog.css'
 
 const Katalog = () => {
   const [size, setSize] = React.useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [favPizza, setFavPizza] = useState(null);
-
-  const linkStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'orange',
-    border: '1px solid orange',
-    height: '35px',
-    width: '100px',
-    borderRadius: '50px',
-    fontSize: '15px',
-    fontWeight: '600',
-    textDecoration: 'none',
-    transition: 'background-color 0.3s, color 0.3s'
-  };
-
-  const hoverStyle = {
-    backgroundColor: 'transparent',
-    color: 'orange'
-  };
-
 
   const handleClick = (newSize) => {
     setSize(newSize);
@@ -98,42 +78,31 @@ const Katalog = () => {
 
   return (
     <Box>
-      <Flex pl="50px" pr="50px" justifyContent="space-between" textAlign="center"  >
-        <Flex gap="30px" padding="25px" >
-          <NavLink  to="/combo"
-        style={linkStyle}
-        activeStyle={{ ...linkStyle, backgroundColor: 'orange' }}
-        onMouseEnter={(e) => {
-          e.target.style.backgroundColor = hoverStyle.backgroundColor;
-          e.target.style.color = hoverStyle.color;
-        }}
-        onMouseLeave={(e) => {
-          e.target.style.backgroundColor = 'orange';
-          e.target.style.color = 'black';
-        }}>Дессерты
+      <Flex pl="50px" pr="50px" justifyContent="space-between" textAlign="center">
+      <Flex gap="30px" padding="25px">
+        <NavLink
+          to="/combo"
+          className="nav-link"
+          activeClassName="active"
+        >
+          Дессерты
         </NavLink>
 
-          <NavLink to="/beverages"
-        style={{ ...linkStyle, backgroundColor: 'transperent', color: 'orange' }}
-        activeStyle={{ ...linkStyle, backgroundColor: 'orange', color: 'white' }}
-        onMouseEnter={(e) => {
-          e.target.style.backgroundColor = hoverStyle.backgroundColor;
-          e.target.style.color = hoverStyle.color;
-        }}
-        onMouseLeave={(e) => {
-          e.target.style.backgroundColor = 'orange';
-          e.target.style.color = 'black';
-        }}>
+        <NavLink
+          to="/beverages"
+          className="nav-link"
+          activeClassName="active"
+        >
           Напитки
         </NavLink>
-        </Flex>
+      </Flex>
         {sizes.map((size) => (
         <Button
           onClick={() => handleClick(size)}
           key={size}
           bg="orange"
           m={4}
-          _hover={{ transform: 'scale(1.1)', transition: 'transform 0.2s' }} // эффект при наведении
+          _hover={{ transform: 'scale(1.1)', transition: 'transform 0.2s' }}
         >
           <Icon 
             as={MdShoppingCart} 
@@ -159,7 +128,7 @@ const Katalog = () => {
               <Box overflow="scroll">
                 {favPizza.map((pizza) => (
                   <Box key={pizza.id}>
-                    <Flex pb="10px" gap="10px" w="430px" alignItems="center">
+                    <Flex pb="10px" mt="20px" ml="15px" gap="10px" w="430px" alignItems="center">
                       <Image w="100px" src={pizza.image} alt={pizza.title} />
                       <Box>
                         <Text fontSize="20px">{pizza.title}</Text>
@@ -171,21 +140,24 @@ const Katalog = () => {
                         )}
                       </Box>
                     </Flex>
-                    <Button colorScheme='teal' variant='ghost' onClick={() => handleDelete(pizza.id)}>
-                      Delete
+                    <Button  colorScheme='teal' variant='ghost' onClick={() => handleDelete(pizza.id)}>
+                      Удалить
                     </Button>
                   </Box>
                 ))}
                 {user_prof.email ? (
-                  <Text>Total Price: {calculateTotalPrice2()} сом</Text>
+                  <Text textAlign="center" color="orange" fontSize="20px">Итого : {calculateTotalPrice2()} сом</Text>
                 ) : (
-                  <Text>Total Price: {calculateTotalPrice()} сом</Text>
+                  <Text textAlign="center" color="orange" fontSize="20px">Итого : {calculateTotalPrice()} сом</Text>
                 )}
                 <NavLink to="/buy">
                   <Button
                     onClick={() => {
                       onClose();
                     }}
+                    mt="10px"
+                    ml="168px"
+                    mb="20px"
                   >
                     Купить
                   </Button>

@@ -37,7 +37,7 @@ const Header = () => {
   return (
     <>
       <Box
-        maxW={1536}
+        maxW={2000}
         as="header"
         position="fixed"
         top={0}

@@ -71,7 +71,7 @@ const BuyCard = () => {
   return (
     <Box alignItems="center" maxWidth="400px" mx="auto">
       <Flex alignItems="center" justifyContent="space-between">
-        <Heading fontWeight="200" fontSize="23px">
+        <Heading fontWeight="600" fontSize="23px">
           Оплата картой
         </Heading>
         <Image w="60px" src="/assets/visa.png" />
@@ -94,9 +94,10 @@ const BuyCard = () => {
             readOnly
           />
 
-          <Button type="submit" onClick={() => handleAddCart(favPizza)}>
+          <Button
+          marginTop="20px" marginLeft="150px" type="submit" onClick={() => handleAddCart(favPizza)}>
             <NavLink to={`/`}>
-              оплатить
+              Оплатить
             </NavLink>
           </Button>
         </Box>
@@ -127,7 +128,7 @@ const BuyCard = () => {
                   });
                 }}
               >
-                Delete
+                Удалить
               </Button>
             </Box>
           </>

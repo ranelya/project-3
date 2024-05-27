@@ -58,8 +58,6 @@ function Admin() {
     return () => unsub();
   }, []);
 
-
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -92,13 +90,13 @@ function Admin() {
   return (
     <Box>
       <Center flex flexDirection="column">
-        <Text fontSize="30px">Pizza Panel</Text>
+        <Text fontSize="30px">Панель пицц</Text>
 
         <form onSubmit={handleSubmit}>
           <Flex flexDirection="column" gap="10px" alignItems="center">
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="title"
                 placeholder="Название продукта"
@@ -108,7 +106,7 @@ function Admin() {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="type"
                 placeholder="Тип продукта"
@@ -118,7 +116,7 @@ function Admin() {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="desc"
                 placeholder="Описание продукта"
@@ -128,7 +126,7 @@ function Admin() {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="price"
                 placeholder="Цена продукта"
@@ -138,7 +136,7 @@ function Admin() {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="priceUser"
                 placeholder="Цена продукта для пользователей"
@@ -148,7 +146,7 @@ function Admin() {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="ingredients"
                 placeholder="Ингредиенты продукта"
@@ -158,7 +156,7 @@ function Admin() {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="additions"
                 placeholder="Дополнения продукта"
@@ -168,7 +166,7 @@ function Admin() {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="image"
                 placeholder="картинка"
@@ -176,22 +174,24 @@ function Admin() {
                 onChange={handleInputChange}
               />
             </Box>
-            <Button w="150px" type="submit">
+            <Button w={["100%", "100%", "150px"]} type="submit">
               Отправить
             </Button>
           </Flex>
         </form>
       </Center>
-      <SimpleGrid columns={[1, 2, 3, 4, 4]}>
+      <SimpleGrid columns={[1, 2, 3, 4]} spacing="20px" padding="20px">
         {pizzas.map((pizza) => (
           <Box key={pizza.id}>
             <Flex flexDirection="column" gap="10px">
-              <Box width="380px" alignItems="center" w="300px">
-                <Image dropShadow="xl" w="200px" margin="0 auto" src={pizza.image} />
+              <Box width="100%" alignItems="center">
+                <Image dropShadow="xl" w="100%" maxW="200px" margin="0 auto" src={pizza.image} />
                 <Text pl="35px" fontSize="20px">
                   {pizza.title}
                 </Text>
-                <Text pl="35px" height="95px" maxH="90px">{pizza.desc}</Text>
+                <Text pl="35px" height="95px" maxH="90px">
+                  {pizza.desc}
+                </Text>
                 <Flex
                   alignItems="center"
                   justifyContent="space-between"
@@ -203,7 +203,14 @@ function Admin() {
                 </Flex>
               </Box>
             </Flex>
-            <Button marginLeft="25px" marginBottom="10px" mt="5px" onClick={() => handleDelete(pizza.id)}>Удалить</Button>
+            <Button
+              marginLeft="25px"
+              marginBottom="10px"
+              mt="5px"
+              onClick={() => handleDelete(pizza.id)}
+            >
+              Удалить
+            </Button>
           </Box>
         ))}
       </SimpleGrid>

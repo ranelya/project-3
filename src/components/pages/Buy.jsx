@@ -24,15 +24,15 @@ const Buy = () => {
   return (
     <Box>
       <Box m="auto" w="500px" pl="60px">
-        <Heading fontSize="23px" fontWeight="300">
+        <Heading fontSize="23px" fontWeight="600" >
           Заказ
         </Heading>
         <Flex pt="20px" gap="10px" flexDirection="column">
           <Input w="300px" type="text" placeholder="Имя и фамилия" required />
           <Input w="300px" type="text" placeholder="Ваш адрес" required />
 
-          <Button w="100px" mt={4} onClick={onOpen}>
-            оплатить
+          <Button w="100px" marginTop="20px" marginLeft="100px" mt={4} onClick={onOpen}>
+            Оплатить
           </Button>
           <Modal finalFocusRef={finalRef} isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />

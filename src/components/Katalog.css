@@ -1,0 +1,20 @@
+/* App.css */
+.nav-link {
+  padding: 8px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.2s ease;
+  border: 1px solid orange;
+  height: 40px;
+  text-align: center;
+}
+
+.nav-link:hover {
+  background-color: orange;
+  color: white;
+}
+
+.nav-link.active {
+  background-color: orange;
+  color: white;
+}

@@ -64,6 +64,7 @@ const Combo = () => {
               w="200px"
               h="200px"
               objectFit="cover"
+              margin="0 auto"
               src={pizza.image}
               transition="transform 0.3s"
               _hover={{ transform: "scale(1.1)" }}
@@ -72,7 +73,7 @@ const Combo = () => {
           <Text fontSize="20px" fontWeight="bold" mb="10px">
             {pizza.title}
           </Text>
-          <Text fontSize="16px" mb="10px" maxHeight="40px" overflow="hidden">
+          <Text fontSize="16px" mb="10px" height="90px" maxHeight="90px" overflow="hidden">
             {pizza.desc}
           </Text>
           <Flex justifyContent="space-between" alignItems="center">

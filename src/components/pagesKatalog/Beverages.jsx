@@ -86,9 +86,10 @@ const Beverages = () => {
                   <Image dropShadow="xl" 
                   w="200px"  
                   transition="transform 0.3s"
+                  margin="0 auto"
                  _hover={{ transform: 'scale(1.1)'}} 
                   src={pizza.image} />
-                  <Text pl="35px" fontSize="20px">
+                  <Text pl="35px"  fontSize="20px">
                     {pizza.title}
                   </Text>
                   <Text pl="35px" >{pizza.desc}</Text>
@@ -153,7 +154,7 @@ const Beverages = () => {
                       </Text>
                     )}
                     {!user_prof.email && (
-                      <Text fontSize="20px" fontWeight="300" color="red">
+                      <Text fontSize="20px" fontWeight="300" color="orange">
                         {" "}
                         от {selectedBeverage.priceUser} сом для
                         зарегестрированных

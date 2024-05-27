@@ -43,42 +43,29 @@ const AdminBev = () => {
     image: "",
   });
 
-  let arr = [
-    {
-      title: "маленькая",
-      size: 150,
-    },
-    {
-      title: "средний",
-      size: 200,
-    },
-    {
-      title: "большой",
-      size: 250,
-    },
-  ];
-  const [sizePizza] = useState(arr[0].size);
-
   const user_prof = useSelector((state) => state.user);
 
-  const [currentPizza, setCurrentPizza] = useState(null);
+  const { isOpen, onClose } = useDisclosure();
 
   useEffect(() => {
     const q = query(collection(db, "Beverages"));
     const unsub = onSnapshot(q, (querySnapshot) => {
-      let BeveragesArr = [];
+      let beveragesArr = [];
       querySnapshot.forEach((doc) => {
-        BeveragesArr.push({ ...doc.data(), id: doc.id });
+        beveragesArr.push({ ...doc.data(), id: doc.id });
       });
-      setBeverages(BeveragesArr);
+      setBeverages(beveragesArr);
     });
     return () => unsub();
   }, []);
 
-
-  const handleCloseModal = () => {
-    setCurrentPizza(null);
-    onClose();
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+      id: uuidv4(),
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -96,149 +83,130 @@ const AdminBev = () => {
       image: "",
     });
   };
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-      id: uuidv4(),
-    });
-  };
-  const { isOpen,  onClose } = useDisclosure();
-
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "Beverages", id));
   };
- 
+
+  const handleCloseModal = () => {
+    onClose();
+  };
+
   return (
     <Box>
       <Center pl="60px" py="60px" flex flexDirection="column">
-        <Text fontSize="30px">Drinks Panel</Text>
+        <Text fontSize="30px">Панель напитков</Text>
 
         <form onSubmit={handleSubmit}>
           <Flex flexDirection="column" gap="10px" alignItems="center">
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="title"
                 placeholder="Название продукта"
                 value={formData.title}
-                onChange={(e) => handleInputChange(e, "title")}
+                onChange={(e) => handleInputChange(e)}
               />
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="type"
                 placeholder="Тип продукта"
                 value={formData.type}
-                onChange={(e) => handleInputChange(e, "type")}
+                onChange={(e) => handleInputChange(e)}
               />
             </Box>
-
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="price"
                 placeholder="Цена продукта"
                 value={formData.price}
-                onChange={(e) => handleInputChange(e, "price")}
+                onChange={(e) => handleInputChange(e)}
               />
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="priceUser"
                 placeholder="Цена продукта для пользователей"
                 value={formData.priceUser}
-                onChange={(e) => handleInputChange(e, "priceUser")}
+                onChange={(e) => handleInputChange(e)}
               />
             </Box>
-
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="image"
-                placeholder="картинка"
+                placeholder="Картинка"
                 value={formData.image}
-                onChange={(e) => handleInputChange(e, "image")}
+                onChange={(e) => handleInputChange(e)}
               />
             </Box>
-            <Button w="150px" type="submit">
+            <Button w={["100%", "100%", "150px"]} type="submit">
               Отправить
             </Button>
           </Flex>
         </form>
       </Center>
-      <SimpleGrid
-        pl={["0px", "20px", "30px", "40px"]}
-        columns={[1, 2, 3, 4, 4]}
-      >
-        {beverages.map((pizza) => (
-          <Box key={pizza.id}>
+      <SimpleGrid pl={["0px", "20px", "30px", "40px"]} columns={[1, 2, 3, 4, 4]}>
+        {beverages.map((beverage) => (
+          <Box key={beverage.id}>
             <Flex pt="60px" flexDirection="column" gap="10px">
               <Box width="380px" alignItems="center" w="300px">
-                <Image dropShadow="xl" w="200px" src={pizza.image} />
+                <Image dropShadow="xl" w="200px" src={beverage.image} />
                 <Text pl="35px" fontSize="20px">
-                  {pizza.title}
+                  {beverage.title}
                 </Text>
-                <Text pl="35px" height='100px'>{pizza.desc}</Text>
+                <Text pl="35px" height="100px">{beverage.desc}</Text>
                 <Flex alignItems="center" pt="20px" pl="35px" fontSize="20px">
-                {user_prof.email ? (
-                      <Text fontSize="20px" fontWeight="300">
-                        от {pizza.priceUser} сом  
-                      </Text>
-                    ) : (
-                      <Text fontSize="20px" fontWeight="300">
-                        от {pizza.price} сом
-                      </Text>
-                    )}
+                  {user_prof.email ? (
+                    <Text fontSize="20px" fontWeight="300">
+                      от {beverage.priceUser} сом  
+                    </Text>
+                  ) : (
+                    <Text fontSize="20px" fontWeight="300">
+                      от {beverage.price} сом
+                    </Text>
+                  )}
                 </Flex>
               </Box>
             </Flex>
-            <Button ml="30px" mb="20px" mt="10px" onClick={() => handleDelete(pizza.id)}>Удалить</Button>
+            <Button ml="30px" mb="20px" mt="10px" onClick={() => handleDelete(beverage.id)}>Удалить</Button>
           </Box>
         ))}
       </SimpleGrid>
       <Modal onClose={handleCloseModal} size="xl" isOpen={isOpen}>
         <ModalOverlay />
         <ModalContent>
-          {currentPizza && (
-            <>
-              <ModalHeader>{currentPizza.title}</ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
-                <Flex
-                  gap="5px"
-                  alignItems="center"
-                >
-                  <Image pt="20px" w={sizePizza} src={currentPizza.image} />
-                  <Box>
-                    <Text>{currentPizza.desc}</Text>
-                    {user_prof.email ? (
-                      <Text fontSize="20px" fontWeight="300">
-                        от {currentPizza.priceUser} сом потому что вы зареганы
-                      </Text>
-                    ) : (
-                      <Text fontSize="20px" fontWeight="300">
-                        от {currentPizza.price} сом
-                      </Text>
-                    )}
-                    
-                  </Box>
-                </Flex>
-              </ModalBody>
-              <ModalFooter>
-                <Button onClick={handleCloseModal}>Закрыть</Button>
-              </ModalFooter>
-            </>
-          )}
+          <ModalHeader>Заголовок</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Flex gap="5px" alignItems="center">
+              <Image pt="20px" w="100px" src={formData.image} />
+              <Box>
+                <Text>{formData.desc}</Text>
+                {user_prof.email ? (
+                  <Text fontSize="20px" fontWeight="300">
+                    от {formData.priceUser} сом, так как вы зарегистрированы
+                  </Text>
+                ) : (
+                  <Text fontSize="20px" fontWeight="300">
+                                   от {formData.price} сом
+                  </Text>
+                )}
+              </Box>
+            </Flex>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={handleCloseModal}>Закрыть</Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </Box>
@@ -246,3 +214,4 @@ const AdminBev = () => {
 };
 
 export default AdminBev;
+

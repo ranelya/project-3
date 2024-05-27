@@ -43,9 +43,7 @@ const AdminComb = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     await addDoc(collection(db, "combo"), formData);
-
     setFormData({
       id: "",
       type: "",
@@ -73,8 +71,8 @@ const AdminComb = () => {
   }, []);
 
   const { isOpen, onClose } = useDisclosure();
-  const [size ] = useState("md");
-  const [currentPizza] = useState(null);
+  const [size] = useState("md");
+  const [currentPizza, setCurrentPizza] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -85,8 +83,6 @@ const AdminComb = () => {
     });
   };
 
-
-
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "combo", id));
   };
@@ -94,13 +90,13 @@ const AdminComb = () => {
   return (
     <Box>
       <Center pl="60px" py="60px" flex flexDirection="column">
-        <Text fontSize="30px">Dessert Panel</Text>
+        <Text fontSize="30px">Панель Десертов</Text>
 
         <form onSubmit={handleSubmit}>
           <Flex flexDirection="column" gap="10px" alignItems="center">
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="title"
                 placeholder="Название продукта"
@@ -110,7 +106,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="type"
                 placeholder="Тип продукта"
@@ -120,7 +116,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="desc"
                 placeholder="Описание продукта"
@@ -130,7 +126,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="price"
                 placeholder="Цена продукта"
@@ -140,7 +136,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="priceUser"
                 placeholder="Цена продукта для пользователей сайта"
@@ -150,7 +146,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="ingredients"
                 placeholder="Ингредиенты продукта"
@@ -160,7 +156,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="additions"
                 placeholder="Дополнения продукта"
@@ -170,7 +166,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w="800px"
+                w={["100%", "100%", "800px"]}
                 type="text"
                 name="image"
                 placeholder="Картинка"
@@ -178,7 +174,7 @@ const AdminComb = () => {
                 onChange={handleInputChange}
               />
             </Box>
-            <Button w="150px" type="submit">
+            <Button w={["100%", "100%", "150px"]} type="submit">
               Отправить
             </Button>
           </Flex>
@@ -188,71 +184,84 @@ const AdminComb = () => {
         pl={["0px", "20px", "30px", "40px"]}
         columns={[1, 2, 3, 4, 4]}
       >
-        {combos.map((pizza) => (
-          <Box key={pizza.id}>
+        {combos.map((combo) => (
+          <Box key={combo.id}>
             <Flex pt="60px" flexDirection="column" gap="10px">
-              <Box width="400px" alignItems="center" w="300px">
-                <Image dropShadow="xl" w="200px" 
+              <Box
+                width={["100%", "100%", "400px"
+              ]}
+              alignItems="center"
+              w={["100%", "100%", "300px"]}
+            >
+              <Image
+                dropShadow="xl"
+                w="200px"
                 margin="0 auto"
                 transition="transform 0.3s"
-               _hover={{ transform: 'scale(1.1)'}} 
-                src={pizza.image} />
-                <Text pl="20px" fontSize="20px" fontWeight="600">
-                  {pizza.title}
-                </Text>
-                <Text pl="20px" height="90px" maxHeight="95px">{pizza.desc}</Text>
-                <Flex
-                  alignItems="center"
-                  justifyContent="space-between"
-                  pt="20px"
-                  pl="20px"
-                  fontSize="20px"
-                >
-                  <Text>от {pizza.price} сом</Text>
-                  <Modal onClose={onClose} size={size} isOpen={isOpen}>
-                    <ModalOverlay />
-                    <ModalContent>
-                      <ModalHeader>{currentPizza?.title}</ModalHeader>
-                      <ModalCloseButton />
-                      <ModalBody>
-                        <Flex
-                          gap="10px"
-                          alignItems="center"
-                          justifyContent="space-between"
-                        >
-                          <Image
-                            pt="20px"
-                            w="200px"
-                            src={currentPizza?.image}
-                          />
-                          <Box>
-                            <Text>{currentPizza?.desc}</Text>
-                            <Text fontSize="20px"  fontWeight="300">
-                              от {currentPizza?.price} сом
-                            </Text>
-                          </Box>
-                        </Flex>
-                      </ModalBody>
-                      <ModalFooter>
-                        <Button
-                          onClick={() => {
-                            onClose();
-                          }}
-                        >
-                          В корзину
-                        </Button>
-                      </ModalFooter>
-                    </ModalContent>
-                  </Modal>
-                </Flex>
-              </Box>
-            </Flex>
-            <Button marginLeft="18px"  onClick={() => handleDelete(pizza.id)}>Удалить</Button>
-          </Box>
-        ))}
-      </SimpleGrid>
-    </Box>
-  );
+                _hover={{ transform: 'scale(1.1)' }}
+                src={combo.image}
+              />
+              <Text pl="20px" fontSize="20px" fontWeight="600">
+                {combo.title}
+              </Text>
+              <Text pl="20px" height="90px" maxHeight="95px">{combo.desc}</Text>
+              <Flex
+                alignItems="center"
+                justifyContent="space-between"
+                pt="20px"
+                pl="20px"
+                fontSize="20px"
+              >
+                <Text>от {combo.price} сом</Text>
+              </Flex>
+            </Box>
+          </Flex>
+          <Button
+            marginLeft="18px"
+            onClick={() => handleDelete(combo.id)}
+          >
+            Удалить
+          </Button>
+        </Box>
+      ))}
+    </SimpleGrid>
+    <Modal onClose={onClose} size={size} isOpen={isOpen}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>{currentPizza?.title}</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <Flex
+            gap="10px"
+            alignItems="center"
+            justifyContent="space-between"
+          >
+            <Image
+              pt="20px"
+              w="200px"
+              src={currentPizza?.image}
+            />
+            <Box>
+              <Text>{currentPizza?.desc}</Text>
+              <Text fontSize="20px" fontWeight="300">
+                от {currentPizza?.price} сом
+              </Text>
+            </Box>
+          </Flex>
+        </ModalBody>
+        <ModalFooter>
+          <Button
+            onClick={() => {
+              onClose();
+            }}
+          >
+            В корзину
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  </Box>
+);
 };
 
 export default AdminComb;

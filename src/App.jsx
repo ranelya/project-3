@@ -8,7 +8,7 @@ import Cookies from "universal-cookie";
 import { useSelector } from "react-redux";
 
 const App = () => {
-  const [ setUser] = useState(null);
+  const [user, setUser] = useState(null);
   const prof = useSelector((state) => state.user);
   
   useEffect(() => {
@@ -19,7 +19,7 @@ const App = () => {
     } else {
       setUser(authToken);
     }
-  }, []); // Empty dependency array ensures this runs once when the component mounts
+  },[user]);
 
   return (
     <div>
