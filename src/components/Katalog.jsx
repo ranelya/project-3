@@ -10,7 +10,8 @@ import {
   Flex,
   useDisclosure,
   Text,
-  Icon
+  Icon,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import {
   collection,
@@ -23,13 +24,14 @@ import React, { useEffect, useState } from "react";
 import { db } from "./FireBase-config";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { MdShoppingCart } from 'react-icons/md';
+import { MdShoppingCart, MdLocalPizza, MdLocalDrink, MdCake } from 'react-icons/md';
 import './Katalog.css'
 
 const Katalog = () => {
   const [size, setSize] = React.useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [favPizza, setFavPizza] = useState(null);
+  const [isSmallScreen] = useMediaQuery("(max-width: 600px)");
 
   const handleClick = (newSize) => {
     setSize(newSize);
@@ -61,6 +63,7 @@ const Katalog = () => {
 
     return totalPrice;
   };
+
   const calculateTotalPrice2 = () => {
     if (!favPizza) return 0;
 
@@ -74,56 +77,40 @@ const Katalog = () => {
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, "ogogoPzFav", id));
   };
+
   const sizes = ["sm"];
 
   return (
     <Box>
       <Flex pl="50px" pr="50px" justifyContent="space-between" textAlign="center">
-      <Flex gap="30px" padding="25px">
-        <NavLink
-          to="/combo"
-          className="nav-link"
-          activeClassName="active"
-        >
-          Дессерты
-        </NavLink>
-
-        <NavLink
-          to="/beverages"
-          className="nav-link"
-          activeClassName="active"
-        >
-          Напитки
-        </NavLink>
-      </Flex>
+        <Flex gap="30px" padding="25px">
+          <NavLink to="/" className="nav-link" activeClassName="active">
+            {isSmallScreen ? <Icon as={MdLocalPizza} boxSize={6} /> : "Пиццы"}
+          </NavLink>
+          <NavLink to="/combo" className="nav-link" activeClassName="active">
+            {isSmallScreen ? <Icon as={MdCake} boxSize={6} /> : "Дессерты"}
+          </NavLink>
+          <NavLink to="/beverages" className="nav-link" activeClassName="active">
+            {isSmallScreen ? <Icon as={MdLocalDrink} boxSize={6} /> : "Напитки"}
+          </NavLink>
+        </Flex>
         {sizes.map((size) => (
-        <Button
-          onClick={() => handleClick(size)}
-          key={size}
-          bg="orange"
-          m={4}
-          _hover={{ transform: 'scale(1.1)', transition: 'transform 0.2s' }}
-        >
-          <Icon 
-            as={MdShoppingCart} 
-            boxSize={6} 
-          />
-        </Button>
-      ))}
-      <style>
-        {`
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        `}
-      </style>
-
+          <Button
+          position="relative"
+          top="7px"
+            onClick={() => handleClick(size)}
+            key={size}
+            bg="orange"
+            m={4}
+            _hover={{ transform: 'scale(1.1)', transition: 'transform 0.2s' }}
+          >
+            <Icon as={MdShoppingCart} boxSize={6} />
+          </Button>
+        ))}
         <Drawer onClose={onClose} isOpen={isOpen} size={size}>
           <DrawerOverlay />
           <DrawerContent>
             <DrawerCloseButton />
-
             {favPizza && favPizza.length > 0 ? (
               <Box overflow="scroll">
                 {favPizza.map((pizza) => (
@@ -140,7 +127,7 @@ const Katalog = () => {
                         )}
                       </Box>
                     </Flex>
-                    <Button  colorScheme='teal' variant='ghost' onClick={() => handleDelete(pizza.id)}>
+                    <Button colorScheme="teal" variant="ghost" onClick={() => handleDelete(pizza.id)}>
                       Удалить
                     </Button>
                   </Box>
@@ -174,8 +161,7 @@ const Katalog = () => {
                 <Box pt="20px" textAlign="center">
                   <Text fontSize="22px">Ой, пусто!</Text>
                   <Text>
-                    Ваша корзина пуста, откройте «Меню» и выберите понравившийся
-                    товар. Мы доставим ваш заказ от 365 сом
+                    Ваша корзина пуста, откройте «Меню» и выберите понравившийся товар. Мы доставим ваш заказ от 365 сом
                   </Text>
                 </Box>
               </DrawerBody>
