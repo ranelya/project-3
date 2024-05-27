@@ -1,0 +1,41 @@
+/* MainPage.css */
+.main-container {
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 200;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.recently-added {
+  display: block;
+}
+
+@media (max-width: 1500px) {
+  .recently-added {
+    display: none;
+  }
+}
+
+/* Adjusting section title size */
+@media (max-width: 1200px) {
+  .section-title {
+    font-size: 20px;
+  }
+}
+
+/* Adjusting card text size for different screen sizes */
+@media (max-width: 1200px) {
+  .chakra-card {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .chakra-card {
+    font-size: 12px;
+  }
+}
