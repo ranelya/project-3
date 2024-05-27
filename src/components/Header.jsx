@@ -23,7 +23,6 @@ import Login from "./Login";
 import Register from "./Register";
 import { useAuth } from "./hooks/Auth";
 
-
 const Header = () => {
   const { email, token } = useAuth();
   useEffect(() => {
@@ -33,6 +32,7 @@ const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isMobile = useBreakpointValue({ base: true, md: false });
+  const isMediumScreen = useBreakpointValue({ base: true, lg: false });
 
   return (
     <>
@@ -50,33 +50,36 @@ const Header = () => {
         <Flex
           borderBottom="1px solid #f2f2f2"
           alignItems="center"
-          py="20px"
-          pl="50px"
-          pr="50px"
+          py={{ base: "10px", md: "20px" }}
+          px={{ base: "20px", md: "50px" }}
           justifyContent="space-between"
         >
-          <Flex gap="20px" display={{ base: "none", md: "flex" }}>
-            <RouterLink to="/">
-              <Image w="70px" src="/assets/logo-pizz.png" alt="logo" />
-            </RouterLink>
+          <RouterLink to="/">
+            <Image w={{ base: "50px", md: "70px" }} src="/assets/logo-pizz.png" alt="logo" />
+          </RouterLink>
+          <Flex
+            gap="20px"
+            alignItems="center"
+            display={{ base: "none", lg: "flex" }}
+          >
             <Flex flexDir="column">
-              <Text as="span" fontWeight="500" fontSize="17px">
+              <Text as="span" fontWeight="500" fontSize={{ base: "14px", lg: "17px" }}>
                 Доставка пиццы Каракол
               </Text>
-              <Text as="span" fontWeight="300" fontSize="15px">
+              <Text as="span" fontWeight="300" fontSize={{ base: "12px", lg: "15px" }}>
                 37 мин 4.77
               </Text>
             </Flex>
             <Flex flexDir="column">
               <ChakraLink href="tel:+996502005999">
-                <Text as="span" fontWeight="400" fontSize="17px">
+                <Text as="span" fontWeight="400" fontSize={{ base: "14px", lg: "17px" }}>
                   0 (551) 550-550
                 </Text>
               </ChakraLink>
               <Text
                 as="span"
                 fontWeight="300"
-                fontSize="15px"
+                fontSize={{ base: "12px", lg: "15px" }}
                 color="rgb(153, 153, 153)"
               >
                 Звонок по телефону
@@ -87,10 +90,10 @@ const Header = () => {
             size={"md"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label={"Open Menu"}
-            display={{ md: "none" }}
+            display={{ lg: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack spacing={8} alignItems={"center"} display={{ base: "none", md: "flex" }}>
+          <HStack spacing={8} alignItems={"center"} display={{ base: "none", lg: "flex" }}>
             <RouterLink to="/" as={ChakraLink} fontWeight={600} fontSize="16px" className="HeaderLink">
               Главная
             </RouterLink>
@@ -126,7 +129,7 @@ const Header = () => {
         </Flex>
 
         {isOpen && (
-          <Box pb={4} display={{ md: "none" }}>
+          <Box pb={4} display={{ lg: "none" }}>
             <VStack as={"nav"} spacing={4}>
               <RouterLink to="/"  fontWeight={600} fontSize="16px" className="HeaderLink">
                 Главная
@@ -168,6 +171,16 @@ const Header = () => {
                   </HStack>
                 )}
               </Box>
+              <Flex flexDir="column" alignItems="center">
+                <Text as="span" fontWeight="500" fontSize={{ base: "14px", lg: "17px" }}>
+                  Доставка пиццы Каракол
+                </Text>
+                <ChakraLink href="tel:+996502005999">
+                  <Text as="span" fontWeight="400" fontSize={{ base: "14px", lg: "17px" }}>
+                    0 (551) 550-550
+                  </Text>
+                </ChakraLink>
+              </Flex>
             </VStack>
           </Box>
         )}
