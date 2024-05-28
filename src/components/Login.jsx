@@ -3,18 +3,16 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import ModalLogin from "./ModalLogin";
 import { setUser } from "../store/Slices/userSlice";
 import { useDispatch } from "react-redux";
+import { Button } from "@chakra-ui/react";
 
 export const Login = () => {
   const dispatch = useDispatch();
-  const [error, setError] = useState("");
-
-  const adminEmail = "adminp@gmail.com"; // Определите e-mail администратора
 
   const handleLogIn = (email, password) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
-        const isAdmin = user.email === adminEmail; // Проверка на администратора
+        console.log(user);
         dispatch(
           setUser({
             email: user.email,
@@ -23,7 +21,6 @@ export const Login = () => {
             isAdmin, // Сохранение информации о том, что пользователь администратор
           })
         );
-        setError(""); // Очистить ошибки
       })
       .catch((error) => {
         if (error.code === "auth/user-not-found") {
@@ -36,7 +33,7 @@ export const Login = () => {
       });
   };
 
-  return <ModalLogin handleLogin={handleLogIn} error={error} />;
+  return <ModalLogin handleLogin={handleLogIn} />;
 };
 
 export default Login;
