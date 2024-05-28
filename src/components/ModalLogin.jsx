@@ -1,80 +1,86 @@
-import React, { useState } from "react";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
+  Box,
   Button,
-  Input,
   FormControl,
   FormLabel,
-  Alert,
-  AlertIcon,
-  Box
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
+import React, { useState } from "react";
 
 const ModalLogin = ({ handleLogin }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  //   console.log(handleLogin, "jiro");
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [pass, setPass] = useState("");
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    handleLogin(email, password);
+  const handleClickForm = () => {
+    handleLogin(email, pass);
+    onClose();
+    setEmail("");
+    setPass("");
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>Вход</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <form onSubmit={onSubmit}>
-            <FormControl id="email" mb={4}>
+    <Box>
+      <Button onClick={onOpen}>Войти</Button>
+      <Modal
+        initialFocusRef={initialRef}
+        finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Войти</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl>
               <FormLabel>Email</FormLabel>
               <Input
+                ref={initialRef}
                 type="email"
+                placeholder="Your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
             </FormControl>
-            <FormControl id="password" mb={4}>
-              <FormLabel>Пароль</FormLabel>
+
+            <FormControl>
+              <FormLabel>Password</FormLabel>
               <Input
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
+                placeholder="Your password"
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
               />
             </FormControl>
-            {error && (
-              <Box mb={4}>
-                <Alert status="error">
-                  <AlertIcon />
-                  {error}
-                </Alert>
-              </Box>
-            )}
-            <Button type="submit" colorScheme="blue" width="full">
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              onClick={() => {
+                handleClickForm();
+              }}
+              colorScheme="orange"
+              mr={3}
+            >
               Войти
             </Button>
-          </form>
-        </ModalBody>
-        <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={onClose}>
-            Закрыть
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </Box>
   );
 };
 

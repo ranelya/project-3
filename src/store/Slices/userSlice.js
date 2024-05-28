@@ -1,37 +1,32 @@
-// src/store/Slices/userSlice.js
+import { createSlice } from "@reduxjs/toolkit";
 
-import { createSlice } from '@reduxjs/toolkit';
+const initialState = {
+  email: null,
+  token: localStorage.getItem("auth_token") || null,
+  id: null,
+  isAdmin: false, // Добавляем флаг администратора
+};
 
-export const userSlice = createSlice({
-  name: 'user',
-  initialState: {
-    email: '',
-    token: '',
-    id: '',
-    isAdmin: false,
-  },
+const userSlice = createSlice({
+  name: "user",
+  initialState,
   reducers: {
-    setUser: (state, action) => {
+    setUser(state, action) {
       state.email = action.payload.email;
       state.token = action.payload.token;
       state.id = action.payload.id;
-      state.isAdmin = action.payload.isAdmin || false;
+      state.isAdmin = action.payload.isAdmin; // Сохраняем флаг администратора
+      localStorage.setItem("auth_token", action.payload.token);
     },
-    clearUser: (state) => {
-      state.email = '';
-      state.token = '';
-      state.id = '';
-      state.isAdmin = false;
-    },
-    removeUser: (state) => {
-      state.email = '';
-      state.token = '';
-      state.id = '';
-      state.isAdmin = false;
+    removeUser(state) {
+      state.email = null;
+      state.token = null;
+      state.id = null;
+      state.isAdmin = false; // Сбрасываем флаг администратора
+      localStorage.removeItem("auth_token");
     },
   },
 });
 
-export const { setUser, clearUser, removeUser } = userSlice.actions;
-
+export const { setUser, removeUser } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../store/Slices/userSlice";
-import ModalRegister from "./ModalRegister";
-import { Button } from "@chakra-ui/react";
-
+import ModslRegister from "./ModalRegister";
 const Register = () => {
   const dispatch = useDispatch();
-  const [error, setError] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+
+   
 
     const handleRegister = async (email, password) => {
       const auth = getAuth();
