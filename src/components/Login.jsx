@@ -3,26 +3,27 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import ModalLogin from "./ModalLogin";
 import { setUser } from "../store/Slices/userSlice";
 import { useDispatch } from "react-redux";
-import { Button } from "@chakra-ui/react";
 
-const Login = () => {
+export const Login = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+
+  const adminEmail = "adminp@gmail.com"; // Определите e-mail администратора
 
   const handleLogIn = (email, password) => {
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then(({ user }) => {
+        const isAdmin = user.email === adminEmail; // Проверка на администратора
         dispatch(
           setUser({
             email: user.email,
             token: user.accessToken,
             id: user.uid,
+            isAdmin, // Сохранение информации о том, что пользователь администратор
           })
         );
-        setError(""); // Clear any previous errors
-        setIsOpen(false); // Close the modal on successful login
+        setError(""); // Очистить ошибки
       })
       .catch((error) => {
         if (error.code === "auth/user-not-found") {
@@ -35,12 +36,7 @@ const Login = () => {
       });
   };
 
-  return (
-    <>
-      <Button onClick={() => setIsOpen(true)}>Войти</Button>
-      <ModalLogin handleLogin={handleLogIn} error={error} isOpen={isOpen} onClose={() => setIsOpen(false)} />
-    </>
-  );
+  return <ModalLogin handleLogin={handleLogIn} error={error} />;
 };
 
 export default Login;

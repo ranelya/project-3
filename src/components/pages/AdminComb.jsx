@@ -89,14 +89,14 @@ const AdminComb = () => {
 
   return (
     <Box>
-      <Center pl="60px" py="60px" flex flexDirection="column">
+      <Center pl={["10px", "60px"]} py="60px" flex flexDirection="column">
         <Text fontSize="30px">Панель Десертов</Text>
 
         <form onSubmit={handleSubmit}>
-          <Flex flexDirection="column" gap="10px" alignItems="center">
+          <Flex flexDirection={["column", "column", "row"]} gap="10px" alignItems={["center", "center", "flex-start"]}>
             <Box>
               <Input
-                w={["100%", "100%", "800px"]}
+                w="100%"
                 type="text"
                 name="title"
                 placeholder="Название продукта"
@@ -106,7 +106,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w={["100%", "100%", "800px"]}
+                w="100%"
                 type="text"
                 name="type"
                 placeholder="Тип продукта"
@@ -116,7 +116,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w={["100%", "100%", "800px"]}
+                w="100%"
                 type="text"
                 name="desc"
                 placeholder="Описание продукта"
@@ -126,7 +126,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w={["100%", "100%", "800px"]}
+                w="100%"
                 type="text"
                 name="price"
                 placeholder="Цена продукта"
@@ -136,7 +136,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w={["100%", "100%", "800px"]}
+                w="100%"
                 type="text"
                 name="priceUser"
                 placeholder="Цена продукта для пользователей сайта"
@@ -146,7 +146,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w={["100%", "100%", "800px"]}
+                w="100%"
                 type="text"
                 name="ingredients"
                 placeholder="Ингредиенты продукта"
@@ -156,7 +156,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w={["100%", "100%", "800px"]}
+                w="100%"
                 type="text"
                 name="additions"
                 placeholder="Дополнения продукта"
@@ -166,7 +166,7 @@ const AdminComb = () => {
             </Box>
             <Box>
               <Input
-                w={["100%", "100%", "800px"]}
+                w="100%"
                 type="text"
                 name="image"
                 placeholder="Картинка"

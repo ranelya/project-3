@@ -36,7 +36,6 @@ const Register = () => {
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)}>Зарегистрироваться</Button>
       <ModalRegister handleRegister={handleRegister} error={error} isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );

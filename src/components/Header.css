@@ -1,6 +1,7 @@
 .HeaderLink {
   position: relative;
   transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .HeaderLink::after {

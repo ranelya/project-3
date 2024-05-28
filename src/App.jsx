@@ -19,7 +19,7 @@ const App = () => {
     } else {
       setUser(authToken);
     }
-  },[user]);
+  }, [user]);
 
   return (
     <div>
