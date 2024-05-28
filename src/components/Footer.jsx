@@ -3,17 +3,18 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <Box mt="140px" bg="#181818" w={["410px", "500px","766px","1024px","100%"]} height="100%">
+    <Box mt="140px" bg="#181818" w="100%" py={{ base: "50px", md: "30px", lg: "20px" }}>
       <Flex
         flexDir={{ base: "column", md: "row", lg: "row" }}
         alignItems="center"
         borderBottom="solid 1px #fff"
         justifyContent="space-between"
+        px={{ base: "20px", md: "45px" }}
       >
         <Flex
           flexDir={{ base: "column", md: "row", lg: "row" }}
-          p="45px"
-          gap="45px"
+          p={{ base: "20px 0", md: "0", lg: "0" }}
+          gap={{ base: "20px", md: "45px" }}
         >
           <Flex flexDirection="column" gap="7px">
             <Text color="#fff" as="p">
@@ -72,35 +73,19 @@ const Footer = () => {
             </Link>
           </Flex>
         </Flex>
-        <Flex>
-          <Flex p="30px" flexDir="column">
+        <Flex alignItems="center">
+          <Flex flexDir="column" p="20px">
             <Text as="span" fontWeight="400" fontSize="22px">
               0 (551) 550-550
             </Text>
-            <Text
-              as="span"
-              fontWeight="300"
-              fontSize="15px"
-              color="rgb(153, 153, 153)"
-            >
+            <Text fontWeight="300" fontSize="15px" color="rgb(153, 153, 153)">
               Звонок по телефону
             </Text>
-            <Text
-              as="span"
-              fontWeight="300"
-              fontSize="15px"
-              color="rgb(153, 153, 153)"
-            >
+            <Text fontWeight="300" fontSize="15px" color="rgb(153, 153, 153)">
               feedback@gogopizza.kg
             </Text>
-            <Flex flexDirection="column" alignItems="center" pt="50px">
-              <Text
-                as="span"
-                fontWeight="300"
-                fontSize="15px"
-                color="rgb(153, 153, 153)"
-                marginBottom="15px"
-              >
+            <Flex flexDirection="column" alignItems="center" pt="20px">
+              <Text fontWeight="300" fontSize="15px" color="rgb(153, 153, 153)" marginBottom="15px">
                 Принимаем к оплате
               </Text>
               <Image w="170px" src="/assets/Oshka.png" alt="oshka" />
@@ -108,22 +93,12 @@ const Footer = () => {
           </Flex>
         </Flex>
       </Flex>
-      <Flex>
-        <Flex gap="10px" p="20px">
-          <Text
-            as="span"
-            fontWeight="300"
-            fontSize="15px"
-            color="rgb(153, 153, 153)"
-          >
+      <Flex justifyContent="space-between" p="20px">
+        <Flex gap="10px">
+          <Text fontWeight="300" fontSize="15px" color="rgb(153, 153, 153)">
             OGOGO PIZZA
           </Text>
-          <Text
-            as="span"
-            fontWeight="300"
-            fontSize="15px"
-            color="rgb(153, 153, 153)"
-          >
+          <Text fontWeight="300" fontSize="15px" color="rgb(153, 153, 153)">
             © 2024
           </Text>
           <Link color="rgb(153, 153, 153)" textDecoration="none" href="">

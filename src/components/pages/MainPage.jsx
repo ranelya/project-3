@@ -4,11 +4,10 @@ import Card from "../Card";
 import OftenOrdered from "../OftenOrdered";
 import { db } from "../FireBase-config";
 import { collection, deleteDoc, doc, onSnapshot, query, updateDoc } from "firebase/firestore";
-import { useBreakpointValue } from "@chakra-ui/react";
+import "./Main.css"; // Добавляем импорт CSS файла
 
 const MainPage = () => {
   const [pizzas, setPizzas] = useState([]);
-  const isWideScreen = useBreakpointValue({ base: false, md: true });
 
   useEffect(() => {
     const q = query(collection(db, "ogogoPizzas"));
@@ -37,30 +36,24 @@ const MainPage = () => {
   };
 
   return (
-    <Box w="100%" maxW="2000px" mx="auto" p={{ base: "20px", md: "30px", lg: "40px" }}>
-      {isWideScreen && (
-        <>
-          <Text fontSize={{ base: "20px", md: "24px" }} fontWeight="100" mb="20px">
-            Недавно добавленные
-          </Text>
-          <SimpleGrid columns={[1, 2, 3, 4]} spacing="20px">
-            {pizzas.slice(0, 4).map((pizza) => (
-              <OftenOrdered
-                key={pizza.id}
-                pizza={pizza}
-                handleDelete={handleDelete}
-                handleComplete={handleComplete}
-                handleUpdate={handleUpdate}
-              />
-            ))}
-          </SimpleGrid>
-        </>
-      )}
+    <Box w="100%" maxW="2000px" mx="auto" className="main-container">
+      <div className="recently-added">
+        <Text className="section-title">Недавно добавленные</Text>
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing="20px">
+          {pizzas.slice(0, 4).map((pizza) => (
+            <OftenOrdered
+              key={pizza.id}
+              pizza={pizza}
+              handleDelete={handleDelete}
+              handleComplete={handleComplete}
+              handleUpdate={handleUpdate}
+            />
+          ))}
+        </SimpleGrid>
+      </div>
 
-      <Text fontSize={{ base: "24px", md: "30px" }} fontWeight="200" mt={isWideScreen ? "40px" : "20px"} mb="20px">
-        Пицца
-      </Text>
-      <SimpleGrid columns={[1, 2, 3, 4]} spacing="20px">
+      <Text className="section-title">Пицца</Text>
+      <SimpleGrid columns={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing="20px">
         {pizzas.map((pizza) => (
           <Card
             key={pizza.id}

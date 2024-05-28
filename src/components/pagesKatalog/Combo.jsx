@@ -57,7 +57,7 @@ const Combo = () => {
   return (
     <SimpleGrid columns={[1, 2, 3, 4, 4]} spacing="40px" p="20px">
       {combos.map((pizza) => (
-        <Box key={pizza.id} w="300px">
+        <Box key={pizza.id} w="100%" maxW="300px">
           <Box height="200px" mb="20px">
             <Image
               dropShadow="lg"
