@@ -10,35 +10,23 @@ const Register = () => {
   const [error, setError] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleRegister = async (email, password) => {
-    if (password.length < 6) {
-      setError("Пароль должен быть не менее 6 символов.");
-      return;
-    }
-
-    const auth = getAuth();
-    await createUserWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        dispatch(
-          setUser({
-            email: user.email,
-            token: user.accessToken,
-            id: user.uid,
-          })
-        );
-        setError(""); // Clear any previous errors
-        setIsOpen(false); // Close the modal on successful registration
-      })
-      .catch((error) => {
-        setError("Ошибка регистрации: " + error.message);
-      });
-  };
-
-  return (
-    <>
-      <ModalRegister handleRegister={handleRegister} error={error} isOpen={isOpen} onClose={() => setIsOpen(false)} />
-    </>
-  );
+    const handleRegister = async (email, password) => {
+      const auth = getAuth();
+      await createUserWithEmailAndPassword(auth, email, password)
+        .then(({ user }) => {
+          console.log(user);
+          dispatch(
+            setUser({
+              email: user.email,
+              token: user.accessToken,
+              id: user.uid,
+            })
+          );
+        })
+        .catch(console.error);
+    };
+//   console.log(ars);
+  return <ModslRegister handleRegister={handleRegister} />;
 };
 
 export default Register;
