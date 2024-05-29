@@ -11,14 +11,11 @@ import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
-  useBreakpointValue,
-  HStack,
   VStack,
 } from "@chakra-ui/react";
 import { BsSun, BsMoonStarsFill } from "react-icons/bs";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useAuth } from "./hooks/Auth";
-import { useDispatch } from "react-redux";
 import Login from "./Login";
 import Register from "./Register";
 import './Header.css';
