@@ -1,34 +1,37 @@
+import React, { useState } from "react";
 import {
-  Box,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
   Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
   ModalBody,
   ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
+  Button,
+  Input,
+  FormControl,
+  FormLabel,
+  Alert,
+  AlertIcon,
+  Box,
+  useDisclosure
 } from "@chakra-ui/react";
-import React, { useState } from "react";
 
 const ModalLogin = ({ handleLogin }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  //   console.log(handleLogin, "jiro");
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
-  const handleClickForm = () => {
-    handleLogin(email, pass);
-    onClose();
-    setEmail("");
-    setPass("");
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setError(null); // Сброс ошибки перед новой попыткой
+    handleLogin(email, password).catch(err => {
+      setError(err.message);
+    });
   };
 
   return (
@@ -42,40 +45,44 @@ const ModalLogin = ({ handleLogin }) => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Войти</ModalHeader>
+          <ModalHeader>Вход</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <FormControl>
-              <FormLabel>Email</FormLabel>
-              <Input
-                ref={initialRef}
-                type="email"
-                placeholder="Your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </FormControl>
-
-            <FormControl>
-              <FormLabel>Password</FormLabel>
-              <Input
-                type="password"
-                placeholder="Your password"
-                value={pass}
-                onChange={(e) => setPass(e.target.value)}
-              />
-            </FormControl>
+            <form onSubmit={onSubmit}>
+              <FormControl id="email" mb={4}>
+                <FormLabel>Email</FormLabel>
+                <Input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </FormControl>
+              <FormControl id="password" mb={4}>
+                <FormLabel>Пароль</FormLabel>
+                <Input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </FormControl>
+              {error && (
+                <Box mb={4}>
+                  <Alert status="error">
+                    <AlertIcon />
+                    {error}
+                  </Alert>
+                </Box>
+              )}
+              <Button type="submit" colorScheme="blue" width="full">
+                Войти
+              </Button>
+            </form>
           </ModalBody>
-
           <ModalFooter>
-            <Button
-              onClick={() => {
-                handleClickForm();
-              }}
-              colorScheme="orange"
-              mr={3}
-            >
-              Войти
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Закрыть
             </Button>
           </ModalFooter>
         </ModalContent>

@@ -11,7 +11,9 @@ import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
-  useBreakpointValue, // Add this line
+  useBreakpointValue,
+  HStack,
+  VStack,
 } from "@chakra-ui/react";
 import { BsSun, BsMoonStarsFill } from "react-icons/bs";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
@@ -33,7 +35,6 @@ const Header = ({ user }) => {
     console.log(user, "my user");
   }, [email, user]);
 
-  // Determine breakpoints
   const isMobile = useBreakpointValue({ base: true, md: false });
   const isMediumScreen = useBreakpointValue({ base: true, lg: false });
 
@@ -48,7 +49,7 @@ const Header = ({ user }) => {
         zIndex={1000}
         bg={useColorModeValue("white", "gray.800")}
         boxShadow="sm"
-        opacity={1} // Ensuring the header is not transparent
+        opacity={1}
       >
         <Flex
           alignItems="center"
@@ -59,7 +60,7 @@ const Header = ({ user }) => {
         >
           <Flex alignItems="center" gap="20px">
             <RouterLink to="/">
-              <Image w="70px" src="/assets/logo-pizz.png" alt="logo" />
+              <Image w={{ base: "50px", md: "70px" }} src="/assets/logo-pizz.png" alt="logo" />
             </RouterLink>
             <Flex flexDirection="column" display={{ base: "none", md: "flex" }}>
               <Text fontWeight="500" fontSize="17px">
@@ -86,19 +87,18 @@ const Header = ({ user }) => {
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-
           <Flex gap="15px" display={{ base: isOpen ? "flex" : "none", md: "flex" }} alignItems="center">
             <RouterLink to="/aboutus" className="HeaderLink">
               О нас
             </RouterLink>
-            {user.isAdmin && (
+            {user?.isAdmin && (
               <RouterLink to="/admin" className="HeaderLink">
                 Админ Панель
               </RouterLink>
             )}
             <Box>
               {token ? (
-                <RouterLink to="/cabinet" className="HeaderLink">
+                <RouterLink className="HeaderLink" to="/cabinet">
                   <Text fontWeight="400" fontSize="16px">
                     Кабинет
                   </Text>
@@ -123,7 +123,7 @@ const Header = ({ user }) => {
 
         {isOpen && (
           <Box pb={4} display={{ lg: "none" }}>
-            <Flex flexDir="column" alignItems="center">
+            <VStack as={"nav"} spacing={4}>
               <RouterLink to="/" fontWeight={600} fontSize="16px" className="HeaderLink">
                 Главная
               </RouterLink>
@@ -149,21 +149,11 @@ const Header = ({ user }) => {
                   </Flex>
                 )}
               </Box>
-              <Flex flexDir="column" alignItems="center">
-                <Text as="span" fontWeight="500" fontSize={{ base: "14px", lg: "17px" }}>
-                  Доставка пиццы Каракол
-                </Text>
-                <ChakraLink href="tel:+996502005999">
-                  <Text as="span" fontWeight="400" fontSize={{ base: "14px", lg: "17px" }}>
-                    0 (551) 550-550
-                  </Text>
-                </ChakraLink>
-              </Flex>
-            </Flex>
+            </VStack>
           </Box>
         )}
       </Box>
-      <Box height="100px" /> {/* Adding space to prevent overlap */}
+      <Box height="100px" />
     </>
   );
 };

@@ -1,89 +1,78 @@
+import React, { useState } from "react";
 import {
-  Box,
-  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
   FormControl,
   FormLabel,
   Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useColorMode,
-  useDisclosure,
+  Button,
+  Box,
+  Alert,
+  AlertIcon
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import ModalLogin from "./ModalLogin";
+import { useDisclosure } from "@chakra-ui/react";
 
-const ModslRegister = ({ handleRegister }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
-
+const ModalRegister = ({ handleRegister, error, isOpen, onClose }) => {
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleClickForm = () => {
-    handleRegister(email, pass);
-    onClose();
-    setEmail("");
-    setPass("");
+  const onSubmit = (e) => {
+    e.preventDefault();
+    handleRegister(email, password);
   };
 
   return (
-    <Box>
-      <Button onClick={onOpen}>Зарегистрироваться</Button>
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Create your account</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <FormControl>
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Регистрация</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <form onSubmit={onSubmit}>
+            <FormControl id="email" mb={4}>
               <FormLabel>Email</FormLabel>
               <Input
-                ref={initialRef}
                 type="email"
-                placeholder="Your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </FormControl>
-
-            <FormControl>
-              <FormLabel>Password</FormLabel>
+            <FormControl id="password" mb={4}>
+              <FormLabel>Пароль</FormLabel>
               <Input
                 type="password"
-                placeholder="Your password"
-                value={pass}
-                onChange={(e) => setPass(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </FormControl>
-          </ModalBody>
-
-          <ModalFooter>
-            <Button
-              onClick={() => {
-                handleClickForm();
-              }}
-              colorScheme="orange"
-              mr={3}
-            >
+            {error && (
+              <Box mb={4}>
+                <Alert status="error">
+                  <AlertIcon />
+                  {error}
+                </Alert>
+              </Box>
+            )}
+            <Button type="submit" colorScheme="blue" width="full">
               Зарегистрироваться
             </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
-    </Box>
+          </form>
+        </ModalBody>
+        <ModalFooter>
+          <Button colorScheme="blue" mr={3} onClick={onClose}>
+            Закрыть
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
 
-export default ModslRegister;
+export default ModalRegister;

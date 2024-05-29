@@ -5,9 +5,6 @@ import { setUser } from "../store/Slices/userSlice";
 import ModslRegister from "./ModalRegister";
 const Register = () => {
   const dispatch = useDispatch();
-
-   
-
     const handleRegister = async (email, password) => {
       const auth = getAuth();
       await createUserWithEmailAndPassword(auth, email, password)
@@ -23,7 +20,6 @@ const Register = () => {
         })
         .catch(console.error);
     };
-//   console.log(ars);
   return <ModslRegister handleRegister={handleRegister} />;
 };
 
