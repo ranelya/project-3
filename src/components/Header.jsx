@@ -55,7 +55,7 @@ const Header = ({ user }) => {
             </RouterLink>
             <Flex flexDirection="column" display={{ base: "none", lg: "flex" }}>
               <Text fontWeight="500" fontSize="17px">
-                Доставка пиццы Бишкек
+                Доставка пиццы Каракол
               </Text>
               <Text fontWeight="300" fontSize="15px">
                 37 мин 4.77
