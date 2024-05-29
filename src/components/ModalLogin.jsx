@@ -11,12 +11,7 @@ import {
   FormLabel,
   Input,
   Button,
-  Box,
-  Alert,
-  AlertIcon
 } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
-
 const ModalLogin = ({ handleLogin, isOpen, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

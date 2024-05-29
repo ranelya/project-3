@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import ModalLogin from "./ModalLogin";
 import ModalRegister from "./ModalRegister";

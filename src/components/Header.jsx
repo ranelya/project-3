@@ -12,6 +12,7 @@ import {
   useColorModeValue,
   useDisclosure,
   useBreakpointValue,
+  HStack,
   VStack,
 } from "@chakra-ui/react";
 import { BsSun, BsMoonStarsFill } from "react-icons/bs";
@@ -24,7 +25,6 @@ import './Header.css';
 
 const Header = ({ user }) => {
   const { email, token } = useAuth();
-  const dispatch = useDispatch();
   const { toggleColorMode } = useColorMode();
   const buttonColor = useColorModeValue("white", "gray.800");
   const buttonIcon = useColorModeValue(<BsMoonStarsFill />, <BsSun />);
@@ -34,8 +34,7 @@ const Header = ({ user }) => {
     console.log(user, "my user");
   }, [email, user]);
 
-  const isMobile = useBreakpointValue({ base: true, md: false });
-  const isMediumScreen = useBreakpointValue({ base: true, lg: false });
+
 
   return (
     <>
