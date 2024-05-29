@@ -45,15 +45,15 @@ const Header = ({ user }) => {
         <Flex
           alignItems="center"
           justifyContent="space-between"
-          py={{ base: "10px", md: "20px" }}
-          px={{ base: "20px", md: "50px" }}
+          py={{ base: "10px", lg: "20px" }}
+          px={{ base: "20px", lg: "50px" }}
           borderBottom="1px solid #f2f2f2"
         >
           <Flex alignItems="center" gap="20px">
             <RouterLink to="/">
-              <Image w={{ base: "50px", md: "70px" }} src="/assets/logo-pizz.png" alt="logo" />
+              <Image w={{ base: "50px", lg: "70px" }} src="/assets/logo-pizz.png" alt="logo" />
             </RouterLink>
-            <Flex flexDirection="column" display={{ base: "none", md: "flex" }}>
+            <Flex flexDirection="column" display={{ base: "none", lg: "flex" }}>
               <Text fontWeight="500" fontSize="17px">
                 Доставка пиццы Бишкек
               </Text>
@@ -61,7 +61,7 @@ const Header = ({ user }) => {
                 37 мин 4.77
               </Text>
             </Flex>
-            <Flex flexDirection="column" display={{ base: "none", md: "flex" }}>
+            <Flex flexDirection="column" display={{ base: "none", lg: "flex" }}>
               <ChakraLink as={RouterLink} to="/" fontWeight="400" fontSize="17px">
                 0 (551) 550-550
               </ChakraLink>
@@ -71,7 +71,7 @@ const Header = ({ user }) => {
             </Flex>
           </Flex>
 
-          <Flex display={{ base: "none", md: "flex" }} gap="20px" alignItems="center">
+          <Flex display={{ base: "none", lg: "flex" }} gap="20px" alignItems="center">
             <RouterLink to="/" fontWeight={600} fontSize="16px" className="HeaderLink">
               Главная
             </RouterLink>
@@ -90,10 +90,12 @@ const Header = ({ user }) => {
                 </Text>
               </RouterLink>
             ) : (
-              <>
-                <Login />
+              <Flex>
+                 <Login />
                 <Register />
-              </>
+              </Flex>
+                
+            
             )}
           </Flex>
 
@@ -101,7 +103,7 @@ const Header = ({ user }) => {
             size="md"
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
             aria-label="Open Menu"
-            display={{ md: "none" }}
+            display={{ lg: "none" }}
             onClick={isOpen ? onClose : onOpen}
             mr="10px" // Добавлено для отступа между бургер-меню и переключателем
           />
