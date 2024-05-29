@@ -1,39 +1,42 @@
-import React, { useEffect, useState } from 'react';
 import { Box, Button, Flex, Grid, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeUser } from '../../store/Slices/userSlice'; // Updated import
+import { useAuth } from '../hooks/Auth';
+import { removeUser } from '../../store/Slices/userSlice';
+import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
-import { collection, onSnapshot, query } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../FireBase-config';
 
 const Cabinet = () => {
-  const userProf = useSelector((state) => state.user); // Redux state
-  const dispatch = useDispatch();
-
+  const user_prof = useSelector((state) => state.user);
   const [favPizza, setFavPizza] = useState([]);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    const q = query(collection(db, 'ShopCollection'));
+    const q = query(collection(db, 'ShopColletion'));
     const unsub = onSnapshot(q, (querySnapshot) => {
       let pizzaArr = [];
+
       querySnapshot.forEach((doc) => {
         pizzaArr.push({ ...doc.data(), id: doc.id });
       });
+
       setFavPizza(pizzaArr);
     });
     return () => unsub();
   }, []);
-
-  const handleLogout = () => {
-    dispatch(removeUser()); // Clear user state on logout
-  };
-
+  const sizes = ['xl'];
+  console.log(favPizza);
+  let cookie = new Cookies();
+  const { token } = useAuth();
   return (
     <Box>
-      {userProf.token ? (
+      {user_prof.token ? (
         <Box pb="50px" pl="50px">
           <Link to={`/`}>
-            <Button m="auto" onClick={handleLogout}>
+            <Button m="auto" onClick={() => dispatch(removeUser())}>
               Выйти
             </Button>
           </Link>
@@ -53,8 +56,13 @@ const Cabinet = () => {
                     {pizza.title}
                   </Text>
                   <Text pl="35px">{pizza.desc}</Text>
-                  <Flex alignItems="center" justifyContent="space-between" pt="20px" pl="35px" fontSize="20px">
-                    {userProf.email ? (
+                  <Flex
+                    alignItems="center"
+                    justifyContent="space-between"
+                    pt="20px"
+                    pl="35px"
+                    fontSize="20px">
+                    {user_prof.email ? (
                       <Text fontSize="20px" fontWeight="300">
                         от {pizza.priceUser} сом
                       </Text>
