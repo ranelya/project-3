@@ -15,7 +15,6 @@ import {
   Alert,
   AlertIcon
 } from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
 
 const ModalRegister = ({ handleRegister, error, isOpen, onClose }) => {
   const [email, setEmail] = useState("");

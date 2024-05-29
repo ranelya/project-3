@@ -12,7 +12,6 @@ import {
   useColorModeValue,
   useDisclosure,
   useBreakpointValue,
-  HStack,
   VStack,
 } from "@chakra-ui/react";
 import { BsSun, BsMoonStarsFill } from "react-icons/bs";
