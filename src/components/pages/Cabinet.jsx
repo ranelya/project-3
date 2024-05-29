@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeUser } from '../../store/Slices/userSlice';
 import { Link } from 'react-router-dom';
-import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore';
+import { collection, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../FireBase-config';
 
 const Cabinet = () => {
@@ -25,7 +25,6 @@ const Cabinet = () => {
     });
     return () => unsub();
   }, []);
-  const sizes = ['xl'];
   console.log(favPizza);
   return (
     <Box>
