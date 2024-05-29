@@ -1,41 +1,39 @@
-/* MainPage.css */
 .main-container {
   padding: 20px;
 }
 
+.recently-added {
+  margin-bottom: 40px;
+}
+
 .section-title {
   font-size: 24px;
-  font-weight: 200;
-  margin-top: 20px;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
-.recently-added {
-  display: block;
-}
-
-@media (max-width: 1500px) {
+@media (max-width: 1040px) {
   .recently-added {
     display: none;
   }
-}
 
-/* Adjusting section title size */
-@media (max-width: 1200px) {
   .section-title {
     font-size: 20px;
   }
-}
 
-/* Adjusting card text size for different screen sizes */
-@media (max-width: 1200px) {
-  .chakra-card {
-    font-size: 14px;
+  .main-container {
+    padding: 10px;
   }
 }
 
 @media (max-width: 768px) {
-  .chakra-card {
-    font-size: 12px;
+  .section-title {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 16px;
   }
 }

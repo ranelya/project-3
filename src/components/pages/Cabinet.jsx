@@ -1,9 +1,7 @@
 import { Box, Button, Flex, Grid, Heading, Image, SimpleGrid, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useAuth } from '../hooks/Auth';
 import { removeUser } from '../../store/Slices/userSlice';
-import Cookies from 'universal-cookie';
 import { Link } from 'react-router-dom';
 import { collection, deleteDoc, doc, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../FireBase-config';
@@ -29,8 +27,6 @@ const Cabinet = () => {
   }, []);
   const sizes = ['xl'];
   console.log(favPizza);
-  let cookie = new Cookies();
-  const { token } = useAuth();
   return (
     <Box>
       {user_prof.token ? (
